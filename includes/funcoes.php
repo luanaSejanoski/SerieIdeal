@@ -19,24 +19,13 @@ function buscarPorGenero(array $series, string $busca)
     $resultado = [];
 
     foreach ($series as $serie) {
-        if (mb_strtolower($busca) == mb_strtolower($serie["genero"])) {
+        if (mb_strtolower($busca) == mb_strtolower($serie["genero"])) //converte tudo pra minusculo
+        {
             array_push($resultado, $serie);
         }
     }
     exibirInformacoes($resultado);
 }
 
-
-function buscarPorNome(array $series, string $nome)
-{
-    $resultado = [];
-
-    foreach ($series as $serie) {
-        if (mb_strtolower($nome) == mb_strtolower($serie["titulo"])) {
-            $resultado[] = $serie;
-        }
-    }
-
-    exibirInformacoes($resultado);
-}
+//busca por nome aqui
 ?>

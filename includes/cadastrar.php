@@ -1,6 +1,11 @@
  <?php 
  session_start();
  require_once 'dados.php';
+
+if(!isset($_SESSION["Logado"]) || $_SESSION["Logado"] != true){
+    header("Location: login.php");
+    exit;
+}
  
  $erros = $_SESSION["erros"] ?? [];
  unset($_SESSION["erros"]);

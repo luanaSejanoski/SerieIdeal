@@ -37,7 +37,7 @@ $_SESSION["series"][] = [
 ];
 //mostra mensagem de cadastro de série
 $_SESSION["sucesso"] = "Série cadastrada!";
-header("Location: " . $_SERVER["PHP_SELF"]);
+header("Location: cadastrar.php");
 exit;
 
  }

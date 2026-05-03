@@ -23,7 +23,7 @@
         $_SESSION["Logado"] = true;
         $_SESSION["usuario"] = $userDigitado;
 
-        header("Location: protegido.php");
+        header("Location: cadastrar.php");
         exit;
         }
          else {
