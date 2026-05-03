@@ -1,15 +1,15 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="pt-br">
 
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Document</title>
+  <title>Serie Ideal</title>
 </head>
 
 <body>
-
-  <form action="dados.php" method="get">
+<!-- PEGA ESSE CÓDIGO AQUI PRA BUSCAR PELO NOME E GENERO, FRANÇA (colocar no index.php) -->
+  <!-- <form action="dados.php" method="get">
     <input type="text" name="nome" id="inome" placeholder="Buscar por uma série">
     <button>Buscar</button>
   </form>
@@ -26,10 +26,11 @@
       <option value="Romance">Romance</option>
     </select>
     <button>Selecionar</button>
-  </form>
+  </form> -->
 
   <?php
   require_once 'funcoes.php';
+  require_once 'protegido.php';
 
   $generos = ["Drama", "Comédia", "Ação", "Terror", "Ficção Científica", "Romance"];
   $series = [
@@ -83,15 +84,20 @@
     ]
   ];
 
+  $series = $series ?? [];
+  $seriesSessao = $_SESSION["series"] ?? [];
+  $catalogo = array_merge($series, $seriesSessao);
+
+
   $nome = isset($_GET["nome"]) ? trim($_GET["nome"]) : "";
   $genero = isset($_GET["genero"]) ? $_GET["genero"] : "";
 
   if ($nome !== "") {
-    buscarPorNome($series, $nome);
+    buscarPorNome($catalogo, $nome);
   }
 
   if ($genero !== "") {
-    buscarPorGenero($series, $genero);
+    buscarPorGenero($catalogo, $genero);
   }
   ?>
   

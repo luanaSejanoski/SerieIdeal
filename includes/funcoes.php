@@ -39,3 +39,4 @@ function buscarPorNome(array $series, string $nome)
 
     exibirInformacoes($resultado);
 }
+?>
