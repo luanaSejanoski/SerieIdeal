@@ -1,6 +1,4 @@
 <?php 
-    session_start();
-
 if(!isset($_SESSION["Logado"]) || $_SESSION["Logado"] != true){
     header("Location: login.php");//redireciona a pagina login
     exit;
@@ -41,6 +39,10 @@ header("Location: cadastrar.php");
 exit;
 
  }
+ $_SESSION["erros"] = $erros;
+
+header("Location: cadastrar.php");
+exit;
 }
 ?>
 

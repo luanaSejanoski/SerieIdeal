@@ -23,9 +23,19 @@ if(!isset($_SESSION["Logado"]) || $_SESSION["Logado"] != true){
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
     <title>Cadastrar Série</title>
 </head>
 <body>
+  <header>
+    <a href="index.php">
+    <h1>Serie Ideal</h1>
+    </a>
+    <nav>
+      <a href="index.php">Home</a>
+    </nav>
+  </header>
+<main>
      <h2>Bem vindo, <?php echo htmlspecialchars($_SESSION["usuario"]); ?></h2>
 
     <h1>Cadastrar Série</h1>
@@ -43,5 +53,6 @@ if(!isset($_SESSION["Logado"]) || $_SESSION["Logado"] != true){
     if ($sucesso) echo htmlspecialchars($sucesso);
 
 ?>
+</main>
 </body>
 </html>

@@ -1,8 +1,9 @@
- <?php 
+<?php 
        session_start();
 
         if (isset($_SESSION["Logado"]) && $_SESSION["Logado"] === true) {
-         header("Location: protegido.php");
+            echo "<p>Você já está logado!</p>";
+         header("Location: cadastrar.php");
         exit;
 }
 
@@ -42,13 +43,23 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="style.css">
     <title>Login</title>
 </head>
 
 <body>
+  <header>
+    <a href="index.php">
+    <h1>Serie Ideal</h1>
+    </a>
+    <nav>
+      <a href="index.php">Home</a>
+    </nav>
+  </header>
+<main>
    <?php
 if (isset($_SESSION["erro_login"])) {
-    echo "<p style='color:red'>" . $_SESSION["erro_login"] . "</p>";
+    echo "<p style='color:white'>" . $_SESSION["erro_login"] . "</p>";
     unset($_SESSION["erro_login"]); // apaga depois de mostrar
 }
 ?>
@@ -63,7 +74,7 @@ if (isset($_SESSION["erro_login"])) {
     </form>
 
     
-   
+</main>
 </body>
 
 </html>

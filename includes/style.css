@@ -1,0 +1,65 @@
+body{
+    background-color: rgb(172, 43, 93);
+    margin: 0;
+}
+header{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: rgb(100, 15, 48);
+    margin: 0;
+    width: 100%;
+}
+header h1{
+    color: rgb(255, 255, 255);
+    font-size: 50px;
+    font-style: italic;
+}
+a{
+    text-decoration: none;
+}
+p{
+    color: white;
+    font-size: 20px;
+}
+nav{
+    text-decoration: none;
+    color: white;
+    padding: 1%;
+}
+nav a{
+    color: white;
+    margin-inline: 50px;
+    border-radius: 60px;
+    padding: 10px;
+    transition: 0.2s;
+    font-size: 20px;
+}
+nav a:hover{
+    color: rgb(128, 22, 63);
+    background-color: white;
+    border-radius: 60px;
+    padding: 10px;
+    transition: 0.2s;
+}
+main{
+    text-align: center;
+}
+.buscar{
+    padding: 15px;
+}
+.todasAsSeries{
+    color: white;
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    padding: 10%;
+}
+.series{
+    text-align: center;
+}
+.series img{
+    height: 300px;
+    width: 550px;
+    border-radius: 10px;
+}
