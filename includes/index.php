@@ -17,7 +17,6 @@
     </nav>
   </header>
   <main>
-    <!-- USA ESSE CÓDIGO se quiser AQUI PRA BUSCAR PELO NOME E GENERO, FRANÇA -->
     <div class="buscar">
     <form action="index.php" method="get">
       <input type="text" name="nome" id="inome" placeholder="Buscar por uma série">
@@ -48,9 +47,13 @@
   $nome = isset($_GET["nome"]) ? trim($_GET["nome"]) : "";
   $genero = isset($_GET["genero"]) ? $_GET["genero"] : "";
 
+  //exibe as series na tela inicial sem a descrição!
+  if($genero == "" && $nome == ""){
+    exibirInformacoes($catalogo);
+  }
   //chamar funcao de busca por nome
   //+ exibe todas as informações das series
-if($nome !== ""){
+  if($nome !== ""){
     $catalogo = buscarPorNome($catalogo, $nome);
     exibirDetalhes($catalogo);
 }
@@ -58,11 +61,7 @@ if($genero !== ""){
     $catalogo = buscarPorGenero($catalogo, $genero);
     exibirDetalhes($catalogo);
 }
-//exibe as series na tela inicial sem a descrição!
-if($genero == "" && $nome == ""){
-    exibirInformacoes($catalogo);
-}
-?>
+  ?>
   </main>
 </body>
 </html>

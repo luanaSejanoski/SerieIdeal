@@ -53,13 +53,33 @@ main{
     display: flex;
     flex-wrap: wrap;
     gap: 20px;
-    padding: 10%;
-}
-.series{
-    text-align: center;
+    padding: 5%;
+    width: 70%;
+    margin: auto;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 .series img{
     height: 300px;
     width: 550px;
     border-radius: 10px;
+}
+.formulario{
+    width: 250px;
+    margin: auto;
+    resize: none;
+}
+textarea{
+    width: 250px;
+    height: 100px;
+    resize: none;
+}
+.formulario input, .formulario select, .formulario textarea, .formulario button{
+    width: 100%;
+    margin-bottom: 10px;
+}
+.erro, .sucesso{
+    color: white;
+    font-style: italic;
 }

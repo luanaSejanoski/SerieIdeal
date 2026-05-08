@@ -7,7 +7,7 @@
       "titulo" => "Breaking Bad",
       "genero" => "Drama",
       "descricao" => "Breaking Bad narra a transformação de Walter White (Bryan Cranston), um professor de química frustrado e diagnosticado com câncer de pulmão inoperável, em um impiedoso produtor de metanfetamina. Para garantir o futuro financeiro de sua família, ele se alia ao ex-aluno Jesse Pinkman (Aaron Paul), mergulhando no perigoso mundo do crime no Novo México.",
-      "imagem" => "https://images4.alphacoders.com/131/1315826.jpg"
+      "imagem" => "https://m.media-amazon.com/images/I/719eTHjzWxL._AC_UF894,1000_QL80_.jpg"
     ],
     [
       "titulo" => "Stranger Things",
@@ -31,7 +31,7 @@
       "titulo" => "Game of Thrones",
       "genero" => "Ação",
       "descricao" => "Game of Thrones (baseada em As Crônicas de Gelo e Fogo de George R.R. Martin) acompanha casas nobres em Westeros lutando pelo controle do Trono de Ferro. Enquanto traições e guerras políticas ocorrem, uma ameaça sobrenatural, os Caminhantes Brancos, desperta no norte, e Daenerys Targaryen planeja retomar o trono com dragões no continente de Essos.",
-      "imagem" => "https://wallpapercave.com/wp/wp2131761.jpg"
+      "imagem" => "https://m.media-amazon.com/images/I/61JSqjmF8NS._AC_UF894,1000_QL80_.jpg"
     ],
     [
       "titulo" => "Friends",
@@ -49,7 +49,7 @@
       "titulo" => "Outlander",
       "genero" => "Romance",
       "descricao" => "Outlander narra a história de Claire Randall, uma enfermeira de combate de 1945 que é misteriosamente transportada para a Escócia de 1743. Presa no passado, ela se vê dividida entre a lealdade ao seu marido no futuro e a paixão por Jamie Fraser, um jovem guerreiro escocês, enquanto enfrenta intrigas, batalhas e o perigo de um antepassado cruel.",
-      "imagem" => "https://images8.alphacoders.com/106/1062842.jpg"
+      "imagem" => "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRoiTD02Y-i3-O1GxasFmt9V6420QbCyyopGw&s"
     ]
   ];
   ?>

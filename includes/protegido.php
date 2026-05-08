@@ -1,4 +1,5 @@
 <?php 
+session_start();
 if(!isset($_SESSION["Logado"]) || $_SESSION["Logado"] != true){
     header("Location: login.php");//redireciona a pagina login
     exit;
