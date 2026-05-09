@@ -46,11 +46,11 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
 
 <body>
     <header>
-        <a href="index.php">
+        <a href="../index.php">
             <h1>Serie Ideal</h1>
         </a>
         <nav>
-            <a href="index.php">Home</a>
+            <a href="../index.php">Home</a>
         </nav>
     </header>
     <main>
