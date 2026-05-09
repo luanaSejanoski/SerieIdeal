@@ -64,6 +64,12 @@ main{
     height: 300px;
     width: 550px;
     border-radius: 10px;
+    outline-style: groove;
+}
+.series p{
+    outline-style: groove;
+    padding: 20px;
+    border-radius: 10px;
 }
 .formulario{
     width: 250px;
@@ -82,4 +88,13 @@ textarea{
 .erro, .sucesso{
     color: white;
     font-style: italic;
+}
+.verMais{
+    text-decoration: none;
+    background-color: white;
+    color: rgb(100, 15, 48);
+    border-radius: 10px;
+    padding: 10px;
+    font-weight: bold;
+    font-size: 20px;
 }

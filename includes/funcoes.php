@@ -23,7 +23,10 @@ function exibirInformacoes(array $series)
         foreach ($series as $serie) {
             echo '<div class="series">';
             echo '<img src="' . $serie["imagem"] . '">';
-            echo '<h2>' . $serie["titulo"] . '</h2>';
+            echo '<h2>' . $serie["titulo"] . " | " . $serie["genero"] . '</h2>';
+            echo '<a class="verMais" href="detalhes.php?titulo=' . urlencode($serie["titulo"]) . '">';
+            echo 'Ver mais';
+            echo '</a>';
             echo '</div>';
         }
         echo '</div>';
@@ -37,7 +40,7 @@ function exibirDetalhes(array $series)
         foreach ($series as $serie) {
             echo '<div class="series">';
             echo '<img src="' . $serie["imagem"] . '">';
-            echo '<h2>' . $serie["titulo"] . '</h2>';
+            echo '<h2>' . $serie["titulo"] . " | " . $serie["genero"] . '</h2>';
             echo "<p>" . $serie["descricao"] . "</p>";
             echo '</div>';
         }
@@ -61,11 +64,16 @@ function buscarPorGenero(array $series, string $busca)
 function buscarPorNome(array $series, string $busca)
 {
     $resultado = [];
+    $encontrado = false;
 
     foreach($series as $serie){
         if(mb_strtolower($busca) == mb_strtolower($serie["titulo"])){
             array_push($resultado, $serie);
+            $encontrado = true;
         }
+    }
+    if(!$encontrado){
+        echo "<p>Série não encontrada!</p>";
     }
     return $resultado;
 }
