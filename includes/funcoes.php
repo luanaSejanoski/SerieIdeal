@@ -1,30 +1,17 @@
 <?php
-// function exibirInformacoes(array $series)
-// {
-//     if (empty($series)) {
-//         echo "Não encontrado!";
-//     } else {
-//         foreach ($series as $serie) {
-//             echo "<p>" . $serie["titulo"] . "</p>";
-//             echo "<p>" . $serie["genero"] . "</p>";
-//             echo "<p>" . $serie["descricao"] . "</p>";
-//             echo "<p><img src = " . $serie["imagem"] . " width = 130px></img></p><br>";
-//         }
-//     }
-// }
+
 function exibirInformacoes(array $series)
 {
     if (empty($series)) {
         echo "<p>Série não encontrada!</p>";
-    } 
-    else {
+    } else {
         echo '<div class="todasAsSeries">';
 
         foreach ($series as $serie) {
             echo '<div class="series">';
             echo '<img src="' . $serie["imagem"] . '">';
             echo '<h2>' . $serie["titulo"] . " | " . $serie["genero"] . '</h2>';
-            echo '<a class="verMais" href="detalhes.php?titulo=' . urlencode($serie["titulo"]) . '">';
+            echo '<a class="verMais" href="includes/detalhes.php?titulo=' . urlencode($serie["titulo"]) . '">';
             echo 'Ver mais';
             echo '</a>';
             echo '</div>';
@@ -35,17 +22,17 @@ function exibirInformacoes(array $series)
 
 function exibirDetalhes(array $series)
 {
-        echo '<div class="todasAsSeries">';
+    echo '<div class="todasAsSeries">';
 
-        foreach ($series as $serie) {
-            echo '<div class="series">';
-            echo '<img src="' . $serie["imagem"] . '">';
-            echo '<h2>' . $serie["titulo"] . " | " . $serie["genero"] . '</h2>';
-            echo "<p>" . $serie["descricao"] . "</p>";
-            echo '</div>';
-        }
+    foreach ($series as $serie) {
+        echo '<div class="series">';
+        echo '<img src="' . $serie["imagem"] . '">';
+        echo '<h2>' . $serie["titulo"] . " | " . $serie["genero"] . '</h2>';
+        echo "<p>" . $serie["descricao"] . "</p>";
         echo '</div>';
     }
+    echo '</div>';
+}
 
 function buscarPorGenero(array $series, string $busca)
 {
@@ -66,15 +53,14 @@ function buscarPorNome(array $series, string $busca)
     $resultado = [];
     $encontrado = false;
 
-    foreach($series as $serie){
-        if(mb_strtolower($busca) == mb_strtolower($serie["titulo"])){
+    foreach ($series as $serie) {
+        if (mb_strtolower($busca) == mb_strtolower($serie["titulo"])) {
             array_push($resultado, $serie);
             $encontrado = true;
         }
     }
-    if(!$encontrado){
+    if (!$encontrado) {
         echo "<p>Série não encontrada!</p>";
     }
     return $resultado;
 }
-?>

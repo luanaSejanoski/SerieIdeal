@@ -25,16 +25,16 @@ foreach($catalogo as $serie){
 <html lang="pt-br">
 <head>
     <meta charset="UTF-8">
-    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="../style/style.css">
     <title>Detalhes</title>
 </head>
 <body>
 <header>
-    <a href="index.php">
+    <a href="../index.php">
     <h1>Serie Ideal</h1>
     </a>
     <nav>
-        <a href="index.php">Home</a>
+        <a href="../index.php">Home</a>
         <a href="cadastrar.php">Nova Série</a>
         <a href="login.php">Login</a>
     </nav>
