@@ -17,7 +17,7 @@
     </nav>
   </header>
   <main>
-    <div class="buscar">
+    <!-- <div class="buscar">
     <form action="index.php" method="get">
       <input type="text" name="nome" id="inome" placeholder="Buscar por uma série">
       <button>Buscar</button>
@@ -33,11 +33,12 @@
       </select>
       <button>Selecionar</button>
     </form>
-    </div>
+    </div> -->
   <?php 
   session_start();
   require_once 'dados.php';
   require_once 'funcoes.php';
+  require_once 'filtrar.php';
 
   $series = $series ?? [];
   $seriesSessao = $_SESSION["series"] ?? [];
@@ -46,6 +47,8 @@
 
   $nome = isset($_GET["nome"]) ? trim($_GET["nome"]) : "";
   $genero = isset($_GET["genero"]) ? $_GET["genero"] : "";
+
+  filtrar();
 
   //exibe as series na tela inicial sem a descrição!
   if($genero == "" && $nome == ""){
