@@ -41,6 +41,7 @@ exit;
 
  }
  $_SESSION["erros"] = $erros;
+ $_SESSION["dadosFormulario"] = $_POST;
 
 header("Location: cadastrar.php");
 exit;

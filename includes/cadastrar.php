@@ -7,15 +7,26 @@
     exit;
   }
 
-  $erros = $_SESSION["erros"] ?? [];
-  unset($_SESSION["erros"]);
+ $erros = $_SESSION["erros"] ?? [];
+ unset($_SESSION["erros"]);
 
-  $sucesso = $_SESSION["sucesso"] ?? "";
-  unset($_SESSION["sucesso"]);
+ $sucesso = $_SESSION["sucesso"] ?? "";
+ unset($_SESSION["sucesso"]);
 
-  $series = $series ?? []; //verifica se séries existe
-  $seriesSessao = $_SESSION["series"] ?? []; //verifica se a sessão séries existe
-  $catalogo = array_merge($series, $seriesSessao); //junta os arrays
+    $series = $series ?? [];//verifica se séries existe
+    $seriesSessao = $_SESSION["series"] ?? [];//verifica se a sessão séries existe
+    $catalogo = array_merge($series, $seriesSessao);//junto os arrays
+
+
+
+    $dados = $_SESSION["dadosFormulario"] ?? [];
+
+    $titulo = $dados["titulo"] ?? '';
+    $genero = $dados["genero"] ?? '';
+    $imagem = $dados["imagem"] ?? '';
+    $descricao = $dados["descricao"] ?? '';
+
+    unset($_SESSION["dadosFormulario"]);
   ?>
 
  <!DOCTYPE html>
