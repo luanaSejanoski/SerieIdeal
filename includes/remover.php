@@ -1,7 +1,7 @@
 <?php
 session_start();
 
-include_once 'includes/cadastrar.php';
+include_once '../includes/cadastrar.php';
 
 if (isset($_GET["titulo"])) {
     $titulo = $_GET["titulo"];
@@ -14,7 +14,7 @@ if (isset($_GET["titulo"])) {
         $_SESSION["series"] = array_values($_SESSION["series"]); //reorganiza os indices do array
     }
 }
-header("Location: ../index.php");
+header("Location: ../views/home.php");
 exit;
 ?>
 </body>

@@ -1,12 +1,12 @@
 body{
-    background-color: rgb(172, 43, 93);
+    background-color: rgb(20, 17, 20);
     margin: 0;
 }
 header{
     display: flex;
     flex-direction: column;
     align-items: center;
-    background-color: rgb(100, 15, 48);
+    background-color: rgb(41, 35, 41);
     margin: 0;
     width: 100%;
 }
@@ -36,7 +36,7 @@ nav a{
     font-size: 20px;
 }
 nav a:hover{
-    color: rgb(128, 22, 63);
+    color: rgb(20, 17, 20);
     background-color: white;
     border-radius: 60px;
     padding: 10px;
@@ -54,21 +54,77 @@ main{
     flex-wrap: wrap;
     gap: 20px;
     padding: 5%;
-    width: 70%;
+    width: 10%;
     margin: auto;
     justify-content: center;
     align-items: center;
+}
+.imgEgenero{
+    position: relative;
+    display: inline-block;
+    overflow: hidden;
+}
+.imgEgenero img{
+    display: block;
+    z-index: 1;
+}
+.sobreposicao{
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    background: linear-gradient(to top, rgba(0, 0, 0, 0.9), rgba(0, 0, 0, 0)); 
+    z-index: 2;
+    min-height: 30%;
+    border-radius: 10px;
+}
+.genero{
+    position: absolute;
+    bottom: 5px;
+    font-size: 20px;
+    left: 5%;
+    background-color: rgb(41, 35, 41);
+    color: white;
+    padding: 10px 20px;
+    border-radius: 5px;
+    outline: solid white 1px;
+}
+.series{
+    background-color: rgb(41, 35, 41);
+    padding: 10px;
+    border-radius: 15px;
+    outline: solid white 1px;
 }
 .series img{
     height: 300px;
     width: 550px;
     border-radius: 10px;
-    outline-style: groove;
 }
-.series p{
-    outline-style: groove;
-    padding: 20px;
-    border-radius: 10px;
+.series h2{
+    font-size: 35px;
+    text-transform: uppercase;
+}
+.sinopseCurta, .sinopse{
+    width: 450px;
+    padding: 0px 0px 40px;
+    display: flex;
+    flex-wrap: wrap;
+    margin: auto;
+    justify-content: center;
+    align-items: center;
+}
+.botaoVerMais{
+    padding: 0px 0px 20px;
+}
+.verMais{
+    text-decoration: none;
+    background-color: rgb(100, 15, 48);
+    color: rgb(255, 255, 255);
+    border-radius: 50px;
+    padding: 10px 20px;
+    font-weight: bold;
+    font-size: 22px;
+    text-transform: uppercase;
 }
 .formulario{
     width: 250px;
@@ -88,16 +144,6 @@ textarea{
     color: white;
     font-style: italic;
 }
-.verMais{
-    text-decoration: none;
-    background-color: white;
-    color: rgb(100, 15, 48);
-    border-radius: 10px;
-    padding: 10px;
-    font-weight: bold;
-    font-size: 20px;
-}
-
 .caixaRemover{
     display: none;
 }
