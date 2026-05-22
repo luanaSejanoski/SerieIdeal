@@ -48,16 +48,17 @@ main{
 .buscar{
     padding: 15px;
 }
-.todasAsSeries{
+.todasAsSeries {
     color: white;
     display: flex;
     flex-wrap: wrap;
-    gap: 20px;
-    padding: 5%;
-    width: 10%;
-    margin: auto;
+    gap: 40px;
+    padding: 3% 5%;
+    width: 100%; 
+    margin: 0 auto;
     justify-content: center;
-    align-items: center;
+    align-items: flex-start;
+    box-sizing: border-box;
 }
 .imgEgenero{
     position: relative;
@@ -94,18 +95,20 @@ main{
     padding: 10px;
     border-radius: 15px;
     outline: solid white 1px;
+    max-width: 380px;
 }
 .series img{
-    height: 300px;
-    width: 550px;
+    height: 220px;
+    width: 360px;
     border-radius: 10px;
+    object-fit: cover;
 }
 .series h2{
     font-size: 35px;
     text-transform: uppercase;
 }
 .sinopseCurta, .sinopse{
-    width: 450px;
+    width: 300px;
     padding: 0px 0px 40px;
     display: flex;
     flex-wrap: wrap;
