@@ -15,14 +15,7 @@
  </head>
 
  <body>
-   <header>
-     <a href="../views/home.php">
-       <h1>Serie Ideal</h1>
-     </a>
-     <nav>
-       <a href="../views/home.php">Home</a>
-     </nav>
-   </header>
+  <?php require_once '../views/navbar.php'; ?>
    <main>
      <h2 style="color: white">Bem vindo, <?php echo htmlspecialchars($_SESSION["usuario"]); ?></h2>
 

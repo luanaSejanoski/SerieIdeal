@@ -1,9 +1,9 @@
 <?php
-  session_start();
-  require_once 'dados.php';
+  // session_start();
+  // require_once '../includes/dados.php';
 
   if (!isset($_SESSION["Logado"]) || $_SESSION["Logado"] != true) {
-    header("Location: login.php");
+    header("Location: ../views/login.php");
     exit;
   }
 
@@ -13,9 +13,9 @@
  $sucesso = $_SESSION["sucesso"] ?? "";
  unset($_SESSION["sucesso"]);
 
-    $series = $series ?? [];//verifica se séries existe
-    $seriesSessao = $_SESSION["series"] ?? [];//verifica se a sessão séries existe
-    $catalogo = array_merge($series, $seriesSessao);//junto os arrays
+    // $series = $series ?? [];//verifica se séries existe
+    // $seriesSessao = $_SESSION["series"] ?? [];//verifica se a sessão séries existe
+    // $catalogo = array_merge($series, $seriesSessao);//junto os arrays
 
 
 

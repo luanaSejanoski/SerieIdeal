@@ -9,14 +9,7 @@
 </head>
 
 <body>
-    <header>
-        <a href="../views/home.php">
-            <h1>Serie Ideal</h1>
-        </a>
-        <nav>
-            <a href="../views/home.php">Home</a>
-        </nav>
-    </header>
+  <?php require_once '../views/navbar.php'; ?>
     <main>
         <?php
         if (isset($_SESSION["erro_login"])) {
@@ -25,7 +18,8 @@
         }
         ?>
 
-        <form action="login.php" method="POST">
+        <div class="formulario">
+        <form action="../views/login.php" method="POST">
         <br><br><label for="user" style="color: white;">Usuário:</label>
         <input type="text" name="user" id="iuser"><br><br>
         <label for="user" style="color: white;">Senha:</label>
@@ -33,6 +27,7 @@
 
         <button type="submit">Entrar</button>
         </form>
+        </div>
 
 
     </main>

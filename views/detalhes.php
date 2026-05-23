@@ -2,13 +2,14 @@
 
 session_start();
 
-require_once "../includes/dados.php";
+require_once '../config/database.php';
+// require_once "../includes/dados.php";
 require_once "../includes/funcoes.php";
 
-$series = $series ?? [];
+// $series = $series ?? [];
 
-$seriesSessao = $_SESSION["series"] ?? [];
-$catalogo = array_merge($series, $seriesSessao);
+// $seriesSessao = $_SESSION["series"] ?? [];
+// $catalogo = array_merge($series, $seriesSessao);
 $tituloRecebido = $_GET["titulo"] ?? "";
 
 $serieEncontrada = null;
@@ -28,16 +29,7 @@ foreach($catalogo as $serie){
     <title>Detalhes</title>
 </head>
 <body>
-<header>
-    <a href="../views/home.php">
-    <h1>Serie Ideal</h1>
-    </a>
-    <nav>
-        <a href="../views/home.php">Home</a>
-        <a href="../views/cadastro.php">Nova Série</a>
-        <a href="../views/login.php">Login</a>
-    </nav>
-</header>
+  <?php require_once '../views/navbar.php'; ?>
 <main>
 <?php
     if($serieEncontrada != null){

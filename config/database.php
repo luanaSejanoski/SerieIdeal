@@ -16,14 +16,7 @@ try{
     echo "Erro ao conectar o banco de dados!";
 }
 
-$sql = "SELECT * FROM series";
-$stmt = $pdo -> query($sql);
-
-$series = $stmt->fetchAll(PDO::FETCH_ASSOC);
-
-print_r($series);
-
-foreach($series as $serie){
- echo $serie["titulo"] . "<br>";
-}
-?>
+$sql = "SELECT s.*, c.nome AS genero FROM series s LEFT JOIN categorias c ON s.categoria_id = c.id";
+$stmt = $pdo->query($sql);
+$catalogo = $stmt->fetchAll(PDO::FETCH_ASSOC);
+ ?>

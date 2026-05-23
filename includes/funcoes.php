@@ -64,16 +64,11 @@ function buscarPorGenero(array $series, string $busca)
 function buscarPorNome(array $series, string $busca)
 {
     $resultado = [];
-    $encontrado = false;
 
     foreach ($series as $serie) {
         if (mb_strtolower($busca) == mb_strtolower($serie["titulo"])) {
             array_push($resultado, $serie);
-            $encontrado = true;
         }
-    }
-    if (!$encontrado) {
-        echo "<p>Série não encontrada!</p>";
     }
     return $resultado;
 }

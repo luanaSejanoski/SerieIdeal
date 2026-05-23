@@ -1,12 +1,12 @@
 <?php
-session_start();
 
+require_once '../config/database.php';
 require_once '../includes/dados.php';
 require_once '../includes/funcoes.php';
 
-$series = $series ?? [];
-$seriesSessao = $_SESSION["series"] ?? [];
-$catalogo = array_merge($series, $seriesSessao);
+// $series = $series ?? [];
+// $seriesSessao = $_SESSION["series"] ?? [];
+// $catalogo = array_merge($series, $seriesSessao);
 
 require_once '../includes/filtrar.php';
 ?>
@@ -22,43 +22,17 @@ require_once '../includes/filtrar.php';
 </head>
 
 <body>
-  <header>
-    <a href="../views/home.php">
-      <h1>Serie Ideal</h1>
-    </a>
-    <nav>
-      <a href="../views/cadastro.php">Nova Série</a>
-      <a href="../views/login.php">Login</a>
-    </nav>
-  </header>
-  <main>
-
-
-    <div class="buscar">
-      <form action="../views/home.php" method="get">
-        <input type="text" name="nome" id="inome" placeholder="Buscar por uma série">
-        <button>Buscar</button>
-
-        <select name="genero" id="igenero">
-          <option value="" disabled selected>Gênero</option>
-          <option value="Drama">Drama</option>
-          <option value="Comédia">Comédia</option>
-          <option value="Ação">Ação</option>
-          <option value="Terror">Terror</option>
-          <option value="Ficção Científica">Ficção Científica</option>
-          <option value="Romance">Romance</option>
-        </select>
-        <button>Selecionar</button>
-      </form>
-    </div>
-    <?php
-    if ($nome == "" && $genero == "") {
+  <?php require_once '../views/navbar.php'; ?>
+<?php
+  if (($nome != "" || $genero != "") && empty($catalogo)) {
+      echo "<p class='naoEncontrado'>Série não encontrada!</p>";
+  } 
+  else if ($nome == "" && $genero == "") {
       exibirInformacoes($catalogo);
-    } else {
+  } else {
       exibirDetalhes($catalogo);
-    }
-    ?>
-  </main>
+  }
+  ?>
 </body>
 
 </html>
