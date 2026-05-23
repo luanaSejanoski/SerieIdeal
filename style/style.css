@@ -130,21 +130,23 @@ main{
     border-radius: 10px;
     object-fit: cover;
 }
-.series h2{
+.series h2 {
     font-size: 35px;
     text-transform: uppercase;
+    text-align: center;
+    margin-top: 15px;
+    margin-bottom: 10px;
 }
-.sinopseCurta, .sinopse{
+.sinopseCurta, .sinopse {
     width: 300px;
-    padding: 0px 0px 40px;
-    display: flex;
-    flex-wrap: wrap;
-    margin: auto;
-    justify-content: center;
-    align-items: center;
+    padding: 0px 0px 30px;
+    margin: 0 auto;
+    text-align: center;
 }
-.botaoVerMais{
-    padding: 0px 0px 20px;
+.botaoVerMais {
+    display: block;
+    text-align: center;
+    padding: 10px 0px 20px;
 }
 .verMais{
     text-decoration: none;
@@ -194,7 +196,6 @@ textarea{
 .caixaRemover{
     display: none;
 }
-
 .caixaRemover:target{
     display: block;
 }
