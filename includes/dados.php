@@ -1,5 +1,5 @@
 
-  <?php
+  <!-- <?php
 
   $generos = ["Drama", "Comédia", "Ação", "Terror", "Ficção Científica", "Romance"];
   $series = [
@@ -61,4 +61,4 @@
     ]
   ];
   ?>
-  
+   -->

@@ -1,14 +1,14 @@
 <?php
+session_start();
+$nome = "";
+$genero = "";
+$catalogo = [];
 
-require_once '../config/database.php';
-require_once '../includes/dados.php';
+require_once '../controllers/homeController.php';
+require_once '../views/navbarHome.php';
 require_once '../includes/funcoes.php';
 
-// $series = $series ?? [];
-// $seriesSessao = $_SESSION["series"] ?? [];
-// $catalogo = array_merge($series, $seriesSessao);
 
-require_once '../includes/filtrar.php';
 ?>
 
 <!DOCTYPE html>
@@ -22,17 +22,15 @@ require_once '../includes/filtrar.php';
 </head>
 
 <body>
-  <?php require_once '../views/navbar.php'; ?>
-<?php
+
+  <?php
   if (($nome != "" || $genero != "") && empty($catalogo)) {
-      echo "<p class='naoEncontrado'>Série não encontrada!</p>";
-  } 
-  else if ($nome == "" && $genero == "") {
-      exibirInformacoes($catalogo);
+    echo "<p class='naoEncontrado'>Série não encontrada!</p>";
+  } else if ($nome == "" && $genero == "") {
+    exibirInformacoes($catalogo);
   } else {
-      exibirDetalhes($catalogo);
-  }
-  ?>
+    exibirDetalhes($catalogo);
+  } ?>
 </body>
 
 </html>

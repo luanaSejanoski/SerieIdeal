@@ -91,10 +91,12 @@ main{
     position: relative;
     display: inline-block;
     overflow: hidden;
+    /* width: 98%; */
 }
 .imgEgenero img{
     display: block;
     z-index: 1;
+    width: 100%;
 }
 .sobreposicao{
     position: absolute;
@@ -123,12 +125,14 @@ main{
     border-radius: 15px;
     outline: solid white 1px;
     max-width: 380px;
+    height: 500px;
 }
 .series img{
     height: 220px;
     width: 360px;
     border-radius: 10px;
     object-fit: cover;
+    
 }
 .series h2 {
     font-size: 35px;
@@ -138,7 +142,7 @@ main{
     margin-bottom: 10px;
 }
 .sinopseCurta, .sinopse {
-    width: 300px;
+    width: 380px;
     padding: 0px 0px 30px;
     margin: 0 auto;
     text-align: center;
@@ -188,6 +192,9 @@ textarea{
 .formulario input, .formulario select, .formulario textarea, .formulario button{
     width: 100%;
     margin-bottom: 10px;
+}
+.formulario button{
+    cursor: pointer;
 }
 .erro, .sucesso{
     color: white;

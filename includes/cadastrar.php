@@ -2,16 +2,7 @@
   // session_start();
   // require_once '../includes/dados.php';
 
-  if (!isset($_SESSION["Logado"]) || $_SESSION["Logado"] != true) {
-    header("Location: ../views/login.php");
-    exit;
-  }
-
- $erros = $_SESSION["erros"] ?? [];
- unset($_SESSION["erros"]);
-
- $sucesso = $_SESSION["sucesso"] ?? "";
- unset($_SESSION["sucesso"]);
+  
 
     // $series = $series ?? [];//verifica se séries existe
     // $seriesSessao = $_SESSION["series"] ?? [];//verifica se a sessão séries existe
