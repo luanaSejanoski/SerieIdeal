@@ -196,9 +196,18 @@ textarea{
 .formulario button{
     cursor: pointer;
 }
+
+.mensagens{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-top: 15px;
+}
+
 .erro, .sucesso{
     color: white;
     font-style: italic;
+    text-align: center;
 }
 .caixaRemover{
     display: none;

@@ -1,17 +1,17 @@
 <header>
   <div class="menu">
-    <a href="../views/home.php">
+    <a href="home.php">
       <img src="../img/serieideal.png">
     </a>
     
     <nav>
-        <a href="../views/home.php">Home</a>
-        <a href="../views/cadastro.php">Nova Série</a>
-        <a href="../views/login.php">Login</a>
+        <a href="home.php">Home</a>
+        <a href="cadastro.php">Nova Série</a>
+        <a href="login.php">Login</a>
     </nav>
 
     <div class="buscar">
-      <form action="../views/home.php" method="get">
+      <form action="home.php" method="get">
         <input type="text" name="nome" id="inome" placeholder="Buscar por uma série">
         <button>Buscar</button>
 

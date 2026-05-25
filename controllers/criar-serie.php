@@ -1,53 +1,66 @@
- <?php
-  session_start();
-  require_once '../includes/cadastrar.php';
-  ?>
+<?php 
+session_start();
+require_once '../config/database.php';
 
- <!DOCTYPE html>
- <html lang="pt-br">
+// if(!isset($_SESSION["Logado"]) || $_SESSION["Logado"] != true){
+//     header("Location: ../login.php");//redireciona a pagina login
+//     exit;
+// }
 
- <head>
-   <meta charset="UTF-8">
-   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-   <link rel="stylesheet" href="../style/style.css?v=2">
-   <title>Cadastrar Série</title>
- </head>
+ $erros = [];
+ $sucesso = "";
 
- <body>
-   <?php require_once '../views/navbar.php'; ?>
-   <main>
-     <h2 style="color: white">Bem vindo, <?php echo htmlspecialchars($_SESSION["usuario"]); ?></h2>
+if($_SERVER["REQUEST_METHOD"] === "POST"){ //verifica se o usuário enviou o formulário (clicou em enviar)
+ $titulo = $_POST["titulo"] ?? "";
+ $descricao = $_POST["descricao"] ?? "";
+ $descricaoMenor = $_POST["descricaoMenor"] ?? "";
+ $imagem = $_POST["imagem"] ?? "";
+ $categoria_id = $_POST["categoria_id"] ?? "";
 
-     <h1 style="color: white">Cadastrar Série</h1>
-     <div class="formulario">
-       <form action="../includes/protegido.php" method="POST">
-         <input type="text" name="titulo" id="titulo" placeholder="Titulo" value="<?php echo htmlspecialchars($titulo ?? ''); ?>"><br>
-         <select name="genero" id="igenero"><!--  -->
-           <option value="" disabled selected>Gênero</option>
-           <option value="Drama">Drama</option>
-           <option value="Comédia">Comédia</option>
-           <option value="Ação">Ação</option>
-           <option value="Terror">Terror</option>
-           <option value="Ficção Científica">Ficção Científica</option>
-           <option value="Romance">Romance</option>
-         </select><br>
-         <input type="text" name="imagem" id="imagem" placeholder="URL da imagem" value="<?php echo htmlspecialchars($imagem ?? ''); ?>"><br>
-         <textarea name="descricao" id="descricao" placeholder="Descrição"><?php echo htmlspecialchars($descricao ?? ''); ?></textarea><br>
-         <textarea name="descricaoMenor" id="descricaoMenor" placeholder="Descrição menor"><?php echo htmlspecialchars($descricaoMenor ?? ''); ?></textarea><br>
-         <button type="submit" style="background-color: rgb(100, 15, 48); color: white">Cadastrar</button><br>
+if(trim($titulo) === "")$erros[] = "Título é obrigatório";
+if(trim($descricao) === "") $erros[] = "Descrição é obrigatória";
+if(trim($descricaoMenor) === "") $erros[] = "Descrição menor é obrigatória";
+if(trim($imagem) === "") $erros[] = "Imagem é obrigatória";
+if(trim($categoria_id) === "")  $erros[] = "Gênero é obrigatório";
 
-       </form>
-       <a href="#abrir" style="color: rgba(255, 152, 191, 1);">Remover série</a>
-       <div id="abrir" class="caixaRemover">
-         <a href="#" class="fechar" style="color: white;">X</a>
-         <form action="../includes/remover.php" method="get">
-           <input type="text" name="titulo" placeholder="Digite o nome da série">
-           <button style="background-color: rgb(100, 15, 48); color: white">Remover</button>
-         </form>
-       </div>
 
-     </div>
-   </main>
- </body>
+if(empty($erros)){
 
- </html>
+        try {
+
+            $sql = "INSERT INTO series
+            (titulo, descricao, descricaoMenor, imagem, categoria_id)
+            VALUES
+            (:titulo, :descricao, :descricaoMenor, :imagem, :categoria_id)";
+
+            $stmt = $pdo->prepare($sql);
+
+            $stmt->execute([
+                ':titulo' => $titulo,
+                ':descricao' => $descricao,
+                ':descricaoMenor' => $descricaoMenor,
+                ':imagem' => $imagem,
+                ':categoria_id' => $categoria_id,
+            ]);
+
+            $_SESSION["sucesso"] = "Série cadastrada com sucesso!";
+
+            header("Location: ../views/admin/dashboard.php");
+            exit;
+
+        } catch(PDOException $e){//Se der erro no banco:
+
+            $_SESSION["erro"] = "Erro ao salvar no banco";
+
+            header("Location: ../views/admin/dashboard.php");
+            exit;
+        }
+     } else { //Se validação falhar: salva erros na sessão e volta pro dashboard
+
+        $_SESSION["erros"] = $erros;
+
+        header("Location: ../views/admin/dashboard.php");
+        exit;
+    }
+}
+?>
