@@ -6,7 +6,7 @@
     
     <nav>
         <a href="../views/home.php">Home</a>
-        <a href="../views/cadastro.php">Nova Série</a>
+        <a href="../views/admin/dashboard.php">Nova Série</a>
         <a href="../views/login.php">Login</a>
     </nav>
   </div>
