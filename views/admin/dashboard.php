@@ -1,13 +1,13 @@
  <?php
   session_start();
 
-require_once '../../config/database.php';
+  require_once '../../config/database.php';
 
-$sql = "SELECT * FROM categorias";
+  $sql = "SELECT * FROM categorias";
 
-$stmt = $pdo->query($sql);
+  $stmt = $pdo->query($sql);
 
-$categorias = $stmt->fetchAll(PDO::FETCH_ASSOC);
+  $categorias = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
   ?>
 
@@ -29,15 +29,15 @@ $categorias = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
      <h1 style="color: white">Cadastrar Série</h1>
      <div class="formulario">
-     <form action="../../controllers/criar-serie.php" method="POST">
-     <input type="text" name="titulo" id="titulo" placeholder="Titulo" value="<?php echo htmlspecialchars($titulo ?? ''); ?>"><br>
+       <form action="../../controllers/criar-serie.php" method="POST">
+         <input type="text" name="titulo" id="titulo" placeholder="Titulo" value="<?php echo htmlspecialchars($titulo ?? ''); ?>"><br>
          <select name="categoria_id" id="igenero"><!--  -->
-          <option value="" disabled selected>Gênero</option>
+           <option value="" disabled selected>Gênero</option>
 
-           <?php foreach($categorias as $categoria){ ?>
-            <option value="<?php echo $categoria["id"];?>">
-            <?php echo htmlspecialchars($categoria["nome"]); ?>
-            </option>
+           <?php foreach ($categorias as $categoria) { ?>
+             <option value="<?php echo $categoria["id"]; ?>">
+               <?php echo htmlspecialchars($categoria["nome"]); ?>
+             </option>
 
            <?php } ?>
          </select><br>
@@ -59,24 +59,24 @@ $categorias = $stmt->fetchAll(PDO::FETCH_ASSOC);
      </div>
 
      <div class="mensagens">
-   <?php 
-  if(isset($_SESSION["sucesso"])){
+       <?php
+        if (isset($_SESSION["sucesso"])) {
 
-    echo "<p class='sucesso'>" . $_SESSION["sucesso"] . "</p>";
-    unset($_SESSION["sucesso"]);
-}
+          echo "<p class='sucesso'>" . $_SESSION["sucesso"] . "</p>";
+          unset($_SESSION["sucesso"]);
+        }
 
-if(isset($_SESSION["erros"])){
+        if (isset($_SESSION["erros"])) {
 
-    foreach($_SESSION["erros"] as $erro){
-        echo "<p class='erro'>$erro</p>";
-    }
-    unset($_SESSION["erros"]);
-} ?>
+          foreach ($_SESSION["erros"] as $erro) {
+            echo "<p class='erro'>$erro</p>";
+          }
+          unset($_SESSION["erros"]);
+        } ?>
    </main>
 
 
-</div>
+   </div>
  </body>
 
  </html>

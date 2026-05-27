@@ -1,5 +1,6 @@
 <?php
 session_start();
+//apaga valores antes se tiver pra não dar conflito
 $nome = "";
 $genero = "";
 $catalogo = [];
@@ -7,8 +8,6 @@ $catalogo = [];
 require_once '../controllers/homeController.php';
 require_once '../views/navbarHome.php';
 require_once '../includes/funcoes.php';
-
-
 ?>
 
 <!DOCTYPE html>

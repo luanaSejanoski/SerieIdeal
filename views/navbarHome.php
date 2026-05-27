@@ -1,28 +1,39 @@
+<?php
+require_once '../config/database.php';
+
+$sql = "SELECT * FROM categorias";
+
+$stmt = $pdo->query($sql);
+
+$categorias = $stmt->fetchAll(PDO::FETCH_ASSOC);
+?>
+
 <header>
   <div class="menu">
     <a href="home.php">
       <img src="../img/serieideal.png">
     </a>
-    
+
     <nav>
-        <a href="home.php">Home</a>
-        <a href="admin/dashboard.php">Nova Série</a>
-        <a href="login.php">Login</a>
+      <a href="home.php">Home</a>
+      <a href="admin/dashboard.php">Nova Série</a>
+      <a href="login.php">Login</a>
     </nav>
 
-    <div class="buscar">
-      <form action="home.php" method="get">
+    <div style="display:flex; align-items:center" class="buscar">
+      <form style="margin-right: 10px;" action="../controllers/buscar-serie.php" method="get">
         <input type="text" name="nome" id="inome" placeholder="Buscar por uma série">
         <button>Buscar</button>
+      </form>
 
+      <form style="margin-right: 10px;" action="../controllers/buscar-serie.php" method="get">
         <select name="genero" id="igenero">
           <option value="" disabled selected>Gênero</option>
-          <option value="Drama">Drama</option>
-          <option value="Comédia">Comédia</option>
-          <option value="Ação">Ação</option>
-          <option value="Terror">Terror</option>
-          <option value="Ficção Científica">Ficção Científica</option>
-          <option value="Romance">Romance</option>
+          <?php foreach ($categorias as $categoria) { ?>
+            <option value="<?php echo $categoria["id"]; ?>">
+              <?php echo htmlspecialchars($categoria["nome"]); ?>
+            </option>
+          <?php } ?>
         </select>
         <button>Selecionar</button>
       </form>

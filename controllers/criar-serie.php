@@ -27,7 +27,6 @@ if(trim($categoria_id) === "")  $erros[] = "Gênero é obrigatório";
 if(empty($erros)){
 
         try {
-
             $sql = "INSERT INTO series
             (titulo, descricao, descricaoMenor, imagem, categoria_id)
             VALUES
@@ -48,7 +47,7 @@ if(empty($erros)){
             header("Location: ../views/admin/dashboard.php");
             exit;
 
-        } catch(PDOException $e){//Se der erro no banco:
+        } catch(PDOException){//Se der erro no banco:
 
             $_SESSION["erro"] = "Erro ao salvar no banco";
 

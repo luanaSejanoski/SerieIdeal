@@ -1,5 +1,5 @@
 <?php
-
+require_once '../config/database.php';
 function exibirInformacoes(array $series)
 {
     if (empty($series)) {
@@ -13,8 +13,8 @@ function exibirInformacoes(array $series)
             echo '<img src="' . $serie["imagem"] . '">';
             echo '<div class= "sobreposicao">';
             echo '<p class="genero">' . $serie["genero"] . '</p>';
-            echo '</div>';               
-            echo '</div>';            
+            echo '</div>';
+            echo '</div>';
             echo '<h2>' . $serie["titulo"] . '</h2>';
             echo '<p class="sinopseCurta">' . $serie["descricaoMenor"] . '</p>';
             echo '<div class="botaoVerMais">';
@@ -31,17 +31,17 @@ function exibirInformacoes(array $series)
 function exibirDetalhes(array $serie)
 {
     echo '<div class="todasAsSeries">';
-            echo '<div class="series" style ="width:500px;">';
-            echo '<div class="imgEgenero">';
-            echo '<img src="' . $serie["imagem"] . '">';
-            echo '<div class= "sobreposicao">';
-            echo '<p class="genero">' . $serie["genero"] . '</p>';
-            echo '</div>';
-            echo '</div>';
-            echo '<h2>' . $serie["titulo"] . '</h2>';
-            echo '<p class="sinopse">' . $serie["descricao"] . '</p>';
-            echo '</div>';
-            echo '</div>';
+    echo '<div class="series" style ="width:500px;">';
+    echo '<div class="imgEgenero">';
+    echo '<img src="' . $serie["imagem"] . '">';
+    echo '<div class= "sobreposicao">';
+    echo '<p class="genero">' . $serie["genero"] . '</p>';
+    echo '</div>';
+    echo '</div>';
+    echo '<h2>' . $serie["titulo"] . '</h2>';
+    echo '<p class="sinopse">' . $serie["descricao"] . '</p>';
+    echo '</div>';
+    echo '</div>';
     // echo '<div class="todasAsSeries">';
     //         echo '<div class="series">';
     //         echo '<div class="imgEgenero">';
@@ -56,28 +56,41 @@ function exibirDetalhes(array $serie)
     // echo '</div>';
 }
 
-function buscarPorGenero(array $series, string $busca)
+function buscarPorGenero(int $genero, PDO $pdo) : array
 {
-    $resultado = [];
+    $sql = 'SELECT s.*, c.nome AS genero
+    FROM series s
+    LEFT JOIN categorias c
+    ON s.categoria_id = c.id
+    WHERE s.categoria_id = :genero';
 
-    foreach ($series as $serie) {
-        if (mb_strtolower($busca) == mb_strtolower($serie["genero"])) //converte tudo pra minusculo
-        {
-            array_push($resultado, $serie);
-        }
-    }
-    return $resultado;
+    $stmt = $pdo->prepare($sql);
+    $stmt->execute(
+        [
+            ':genero' => $genero
+        ]
+        );
+
+    $resultados = $stmt->fetchAll(PDO::FETCH_ASSOC);
+    return $resultados;
 }
 
-//busca por nome aqui
-function buscarPorNome(array $series, string $busca)
-{
-    $resultado = [];
 
-    foreach ($series as $serie) {
-        if (mb_strtolower($busca) == mb_strtolower($serie["titulo"])) {
-            array_push($resultado, $serie);
-        }
-    }
-    return $resultado;
+function buscarPorNome(string $nome, PDO $pdo): array
+{
+    $sql = 'SELECT s.*, c.nome AS genero
+FROM series s
+LEFT JOIN categorias c
+ON s.categoria_id = c.id
+WHERE s.titulo LIKE :titulo';
+
+    $stmt = $pdo->prepare($sql);
+    $stmt->execute(
+        [
+            ':titulo' => "%$nome%"
+        ]
+    );
+
+    $resultados = $stmt->fetchAll(PDO::FETCH_ASSOC);
+    return $resultados;
 }
