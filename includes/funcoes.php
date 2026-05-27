@@ -31,32 +31,16 @@ function exibirInformacoes(array $series)
 function exibirDetalhes(array $serie)
 {
     echo '<div class="todasAsSeries">';
-    echo '<div class="series" style ="width:500px;">';
-    echo '<div class="imgEgenero">';
-    echo '<img src="' . $serie["imagem"] . '">';
-    echo '<div class= "sobreposicao">';
-    echo '<p class="genero">' . $serie["genero"] . '</p>';
+    echo '<div class="seriesDetalhadas" style=" background-image:  linear-gradient(to right, #131013f2 25%,
+#2e2c3059 100%), url(' . $serie["imagem"] . ');">';
+    echo '<div class="divSerie""><h2>' . $serie["titulo"] .' | ' . $serie["genero"] . '</h2>';
+    echo '<p class="sinopse" style="text-align: left; margin:0; width:100%">' . $serie["descricao"] . '</p>';
+    echo '<p>Nota: ⭐0.0</p></div>';
     echo '</div>';
     echo '</div>';
-    echo '<h2>' . $serie["titulo"] . '</h2>';
-    echo '<p class="sinopse">' . $serie["descricao"] . '</p>';
-    echo '</div>';
-    echo '</div>';
-    // echo '<div class="todasAsSeries">';
-    //         echo '<div class="series">';
-    //         echo '<div class="imgEgenero">';
-    //         echo '<img src="' . $serie["imagem"] . '">';
-    //         echo '<div class= "sobreposicao">';
-    //         echo '<p class="genero">' . $serie["genero"] . '</p>';
-    //         echo '</div>';               
-    //         echo '</div>';            
-    //         echo '<h2>' . $serie["titulo"] . '</h2>';
-    //         echo '<p class="sinopse">' . $serie["descricao"] . '</p>';
-    //         echo '</div>';
-    // echo '</div>';
 }
 
-function buscarPorGenero(int $genero, PDO $pdo) : array
+function buscarPorGenero(int $genero, PDO $pdo): array
 {
     $sql = 'SELECT s.*, c.nome AS genero
     FROM series s
@@ -69,7 +53,7 @@ function buscarPorGenero(int $genero, PDO $pdo) : array
         [
             ':genero' => $genero
         ]
-        );
+    );
 
     $resultados = $stmt->fetchAll(PDO::FETCH_ASSOC);
     return $resultados;

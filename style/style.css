@@ -1,60 +1,70 @@
-html{
+html {
     height: 100%;
 }
-body{
-    background: linear-gradient(to top, rgb(12, 10, 12), rgba(20, 17, 20, 1)); 
+
+body {
+    background: linear-gradient(to top, rgb(12, 10, 12), rgba(20, 17, 20, 1));
     margin: 0;
     min-height: 100vh;
     background-attachment: fixed;
 }
+
 header {
-    background: linear-gradient(to top, rgba(0, 0, 0, 0.5), rgba(41, 35, 41, 1)); 
+    background: linear-gradient(to top, rgba(0, 0, 0, 0.5), rgba(41, 35, 41, 1));
     margin: 0;
     width: 100%;
     outline: solid white 1px;
 }
+
 /* header h1{
     color: rgb(255, 255, 255);
     font-size: 50px;
     font-style: italic;
 } */
-a{
+a {
     text-decoration: none;
 }
-p{
+
+p {
     color: white;
     font-size: 20px;
 }
+
 nav {
     display: flex;
     align-items: center;
     text-decoration: none;
     color: white;
 }
+
 nav a {
     color: white;
-    margin-inline: 15px; 
+    margin-inline: 15px;
     border-radius: 60px;
     padding: 10px;
     transition: 0.2s;
     font-size: 20px;
     text-transform: uppercase;
 }
-nav a:hover{
+
+nav a:hover {
     color: white;
     background-color: rgb(54, 46, 54);
     border-radius: 60px;
     padding: 10px;
     transition: 0.2s;
 }
-main{
+
+main {
     text-align: center;
 }
-.menu img{
+
+.menu img {
     width: 350px;
     border-radius: 60px;
     transition: 0.2s;
 }
+
 .menu {
     display: flex;
     justify-content: space-between;
@@ -62,53 +72,72 @@ main{
     padding: 10px 20px;
     box-sizing: border-box;
 }
-.buscar{
+
+.buscar {
     padding: 15px;
 }
+
 .buscar form {
     display: flex;
     gap: 8px;
     align-items: center;
 }
-.buscar input, .buscar select, .buscar button {
+
+.buscar input,
+.buscar select,
+.buscar button {
     padding: 8px;
     border-radius: 5px;
     border: 1px solid #ccc;
 }
+
 .todasAsSeries {
     color: white;
     display: flex;
     flex-wrap: wrap;
     gap: 40px;
     padding: 3% 5%;
-    width: 100%; 
+    width: 100%;
     margin: 0 auto;
     justify-content: center;
     align-items: flex-start;
     box-sizing: border-box;
 }
-.imgEgenero{
+
+.imgEgeneroDetalhadas {
+    height: 350px;
+    background-size: cover;
+    background-position: center;
+    border-radius: 10px;
+}
+
+
+.imgEgenero,
+.imgEgeneroDetalhadas {
     position: relative;
     display: inline-block;
     overflow: hidden;
     /* width: 98%; */
 }
-.imgEgenero img{
+
+.imgEgenero img {
     display: block;
     z-index: 1;
     width: 100%;
 }
-.sobreposicao{
+
+.sobreposicao {
     position: absolute;
     bottom: 0;
     left: 0;
     width: 100%;
-    background: linear-gradient(to top, rgba(0, 0, 0, 0.9), rgba(0, 0, 0, 0)); 
+    background: linear-gradient(to top, rgba(0, 0, 0, 0.9), rgba(0, 0, 0, 0));
     z-index: 2;
     min-height: 30%;
     border-radius: 10px;
 }
-.genero{
+
+.genero {
     position: absolute;
     bottom: 5px;
     font-size: 20px;
@@ -119,7 +148,8 @@ main{
     border-radius: 5px;
     outline: solid white 1px;
 }
-.series{
+
+.series {
     background-color: rgb(41, 35, 41);
     padding: 10px;
     border-radius: 15px;
@@ -127,13 +157,40 @@ main{
     max-width: 380px;
     height: 500px;
 }
-.series img{
+
+.seriesDetalhadas {
+    display: flex;
+    justify-content: start;
+    align-items: center;
+    background-size: cover;
+    background-position: 20% center;
+
+    padding: 10px;
+    border-radius: 15px;
+    box-shadow: 0 0 25px 5px rgba(0, 0, 0, 0.5);
+    width: 50vw;
+    height: 500px;
+}
+
+.divSerie {
+    width: 60%;
+    text-align: left;
+}
+
+.seriesDetalhadas img {
+    width: 100%;
+    height: 100%;
+    border-radius: 10px;
+}
+
+.series img {
     height: 220px;
     width: 380px;
     border-radius: 10px;
     object-fit: cover;
-    
+
 }
+
 .series h2 {
     font-size: 35px;
     text-transform: uppercase;
@@ -141,18 +198,22 @@ main{
     margin-top: 15px;
     margin-bottom: 10px;
 }
-.sinopseCurta, .sinopse {
+
+.sinopseCurta,
+.sinopse {
     width: 380px;
     padding: 0px 0px 30px;
     margin: 0 auto;
     text-align: center;
 }
+
 .botaoVerMais {
     display: block;
     text-align: center;
     padding: 10px 0px 20px;
 }
-.verMais{
+
+.verMais {
     text-decoration: none;
     background-color: rgb(100, 15, 48);
     color: rgb(255, 255, 255);
@@ -162,7 +223,8 @@ main{
     font-size: 22px;
     text-transform: uppercase;
 }
-.verMais:hover{
+
+.verMais:hover {
     text-decoration: none;
     background-color: rgb(66, 8, 30);
     color: rgb(255, 255, 255);
@@ -173,7 +235,8 @@ main{
     text-transform: uppercase;
     transition: 0.2s;
 }
-.formulario{
+
+.formulario {
     width: 250px;
     margin: auto;
     resize: none;
@@ -184,37 +247,47 @@ main{
     width: 500px;
     margin-top: 30px;
 }
-textarea{
+
+textarea {
     width: 250px;
     height: 100px;
     resize: none;
 }
-.formulario input, .formulario select, .formulario textarea, .formulario button{
+
+.formulario input,
+.formulario select,
+.formulario textarea,
+.formulario button {
     width: 100%;
     margin-bottom: 10px;
 }
-.formulario button{
+
+.formulario button {
     cursor: pointer;
 }
 
-.mensagens{
+.mensagens {
     display: flex;
     align-items: center;
     justify-content: center;
     margin-top: 15px;
 }
 
-.erro, .sucesso{
+.erro,
+.sucesso {
     color: white;
     font-style: italic;
     text-align: center;
 }
-.caixaRemover{
+
+.caixaRemover {
     display: none;
 }
-.caixaRemover:target{
+
+.caixaRemover:target {
     display: block;
 }
+
 .naoEncontrado {
     color: white;
     font-size: 35px;

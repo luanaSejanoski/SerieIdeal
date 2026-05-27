@@ -29,7 +29,7 @@ $serieEncontrada = $stmt->fetch();
 
 <head>
     <meta charset="UTF-8">
-    <link rel="stylesheet" href="../style/style.css?v=2">
+    <link rel="stylesheet" href="../style/style.css">
     <title>Detalhes</title>
 </head>
 
