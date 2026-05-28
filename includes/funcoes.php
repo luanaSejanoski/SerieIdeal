@@ -33,12 +33,39 @@ function exibirDetalhes(array $serie)
     echo '<div class="todasAsSeries">';
     echo '<div class="seriesDetalhadas" style=" background-image:  linear-gradient(to right, #131013f2 25%,
 #2e2c3059 100%), url(' . $serie["imagem"] . ');">';
-    echo '<div class="divSerie""><h2>' . $serie["titulo"] .' | ' . $serie["genero"] . '</h2>';
+    echo '<div class="divSerie""><h2>' . $serie["titulo"] . ' | ' . $serie["genero"] . '</h2>';
     echo '<p class="sinopse" style="text-align: left; margin:0; width:100%">' . $serie["descricao"] . '</p>';
     echo '<p>Nota: ⭐0.0</p></div>';
     echo '</div>';
     echo '</div>';
 }
+
+function exibirComentarios(int $serieId, PDO $pdo)
+{
+    $sql = 'SELECT  u.username, a.comentario
+    FROM usuarios u
+    INNER JOIN avaliacoes a
+    ON u.id = a.usuario_id
+    WHERE serie_id = :id';
+
+    $stmt = $pdo->prepare($sql);
+    $stmt->execute(
+        [
+            ':id' => $serieId
+        ]
+    );
+
+    $comentarios = $stmt->fetchAll(PDO::FETCH_ASSOC);
+    
+    if($comentarios != null){
+        foreach($comentarios as $comentario){
+            echo '<p><strong style="color:#FDD838;">'.$comentario["username"] . ':</strong> ' . $comentario["comentario"] . '</p> ';
+        }
+    }else{
+        echo '<p style="text-align:center;">Ainda não há comentários para essa série :(</p>';
+    }
+}
+
 
 function buscarPorGenero(int $genero, PDO $pdo): array
 {

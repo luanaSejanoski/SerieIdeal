@@ -21,7 +21,9 @@ $stmt->execute(
     ]
 );
 
+
 $serieEncontrada = $stmt->fetch();
+
 
 ?>
 <!DOCTYPE html>
@@ -34,14 +36,28 @@ $serieEncontrada = $stmt->fetch();
 </head>
 
 <body>
-    <main>
-        <?php
-        if ($serieEncontrada != null) {
-            exibirDetalhes($serieEncontrada);
-        } else {
-            echo "<h2>Série não encontrada!</h2>";
-        }
-        ?>
+    <main class="mainDetalhes">
+        <div>
+            <?php
+            if ($serieEncontrada != null) {
+                exibirDetalhes($serieEncontrada);
+            } else {
+                echo "<h2>Série não encontrada!</h2>";
+            }
+            ?>
+        </div>
+        <div class="comentarios">
+            <div class="listaComentarios">
+            <?php
+            // echo $serieEncontrada["id"];
+            exibirComentarios($serieEncontrada["id"], $pdo);
+            ?>
+            </div>
+            <form class="formComentario" action="" method="get">
+            <input type="text" name="comentario" id="icomentario">
+            <button>Publicar</button>
+            </form>
+        </div>
     </main>
 </body>
 

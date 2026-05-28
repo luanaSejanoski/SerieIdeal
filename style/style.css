@@ -3,7 +3,7 @@ html {
 }
 
 body {
-    background: linear-gradient(to top, rgb(12, 10, 12), rgba(20, 17, 20, 1));
+    background: linear-gradient(to top, rgb(12, 10, 12), rgb(13, 11, 13));
     margin: 0;
     min-height: 100vh;
     background-attachment: fixed;
@@ -59,6 +59,50 @@ main {
     text-align: center;
 }
 
+.mainDetalhes {
+    display: flex;
+    justify-content: center;
+    background-image: linear-gradient(to top, #0D0B0D 10%, #640f3080 90%);
+}
+
+.comentarios {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    width: 20%;
+    height: 520px;
+    text-align: left;
+    outline: 1px solid white;
+    margin: 1.6%;
+    padding: 0px 5px;
+}
+
+.listaComentarios {
+    flex: 1;
+    overflow-y: auto;
+    padding-right: 10px;
+}
+
+.formComentario {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin-top: auto;
+}
+
+.formComentario input {
+    width: 80%;
+    height: 35px;
+    margin-right: 10px;
+    margin-top: 10px;
+}
+
+.formComentario button {
+    height: 35px;
+    margin-top: 10px;
+    cursor: pointer
+}
+
 .menu img {
     width: 350px;
     border-radius: 60px;
@@ -89,6 +133,35 @@ main {
     padding: 8px;
     border-radius: 5px;
     border: 1px solid #ccc;
+}
+
+
+select {
+    cursor: pointer;
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    background-color: #ccccccd8;
+    color: black
+}
+
+input,
+textarea {
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    background-color: #ccccccd8;
+}
+
+input::placeholder,
+textarea::placeholder {
+    color: black;
+}
+
+button {
+    border-radius: 5px;
+    border: 1px solid #ccc;
+    background-color: #cccccc18;
+    color: white;
+    cursor: pointer;
 }
 
 .todasAsSeries {
@@ -215,7 +288,7 @@ main {
 
 .verMais {
     text-decoration: none;
-    background-color: rgb(100, 15, 48);
+    background-color: #640f30;
     color: rgb(255, 255, 255);
     border-radius: 50px;
     padding: 10px 20px;
