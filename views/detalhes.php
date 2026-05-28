@@ -11,7 +11,7 @@ $sql = 'SELECT s.*, c.nome AS genero
 FROM series s
 LEFT JOIN categorias c
 ON s.categoria_id = c.id
-WHERE titulo = :titulo';
+WHERE s.titulo = :titulo';
 
 $stmt = $pdo->prepare($sql);
 

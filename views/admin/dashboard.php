@@ -3,38 +3,45 @@
 
   require_once '../../config/database.php';
 
-  $tituloId = $_POST['titulo_id'] ?? null;
+  //sql pra pegar todos os dados da série de acordo com o id 
+  $tituloId = $_GET["titulo_id"] ?? "";
+  $sql = 'SELECT s.*, c.nome AS genero
+FROM series s
+LEFT JOIN categorias c
+ON s.categoria_id = c.id
+WHERE s.id = :id';
 
-  $sqlCategorias = "SELECT * FROM categorias";
+  $stmt = $pdo->prepare($sql);
 
-  $stmtCategorias = $pdo->query($sqlCategorias);
+  $stmt->execute(
+    [
+      ':id' => $tituloId
+    ]
+  );
 
-  $categorias = $stmtCategorias->fetchAll(PDO::FETCH_ASSOC);
+  $series = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
-  $sqlSeries = "SELECT * FROM series";
+//sql pra pegar o titulo e o id das series para fazer as opçoes do select
+  $sqlSelect =  $sql = 'SELECT titulo, id FROM series';
+  $stmtSelect = $pdo->query($sqlSelect);
+  $seriesSelect = $stmtSelect->fetchAll(PDO::FETCH_ASSOC);
+  
+//sql pra pegar todos os dados da serie selecionada
+  $serieSelecionada = null;
+if (isset($_GET['serieEditar'])) {
+    $sql = 'SELECT * FROM series WHERE id = :id';
+    $stmt = $pdo->prepare($sql);
+    $stmt->execute([
+        ':id' => $_GET['serieEditar']
+    ]);
 
-  $stmtSeries = $pdo->query($sqlSeries);
-
-  $series = $stmtSeries->fetchAll(PDO::FETCH_ASSOC);
-
-  $sqlTitulos = "SELECT id, titulo FROM series";
-
-  $stmtTitulos = $pdo->query($sqlTitulos);
-
-  $titulos = $stmtTitulos->fetchAll(PDO::FETCH_ASSOC);
-
-  $serieSelecionada = [];
-
-  if ($tituloId) {
-
-    $sqlSerie = "SELECT * FROM series WHERE id = ?";
-    
-    $stmtSerie = $pdo->prepare($sqlSerie);
-
-    $stmtSerie->execute([$tituloId]);
-
-    $serieSelecionada = $stmtSerie->fetch(PDO::FETCH_ASSOC);
+    $serieSelecionada = $stmt->fetch(PDO::FETCH_ASSOC);
 }
+
+//sql pra pegar todos os dados das categorias
+  $sqlCategorias = 'SELECT * FROM categorias';
+  $stmtCategorias = $pdo->query($sqlCategorias);
+  $categorias = $stmtCategorias->fetchAll(PDO::FETCH_ASSOC);
 
   ?>
 
@@ -44,18 +51,19 @@
  <head>
    <meta charset="UTF-8">
    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-   <link rel="stylesheet" href="../../style/style.css?">
+   <link rel="stylesheet" href="../../style/style.css">
    <title>Cadastrar Série</title>
  </head>
 
  <body>
    <?php require_once '../navbar.php'; ?>
 
-   <main>
-     <!-- <h2 style="color: white">Bem vindo, <?php echo htmlspecialchars($_SESSION["usuario"]); ?></h2> -->
+   <main class="mainDashboard" style="display: flex;
+    align-items: center;
+    justify-content: center;">
 
-     <h1 style="color: white">Cadastrar Série</h1>
      <div class="formulario">
+       <h1 style="color: white">Cadastrar Série</h1>
        <form action="../../controllers/criar-serie.php" method="POST">
          <input type="text" name="titulo" id="tituloCad" placeholder="Titulo" value="<?php echo htmlspecialchars($titulo ?? ''); ?>"><br>
          <select name="categoria_id" id="igeneroCad"><!--  -->
@@ -77,53 +85,50 @@
        <a href="#abrir" style="color: rgba(255, 152, 191, 1);">Remover série</a>
        <div id="abrir" class="caixaRemover">
          <a href="#" class="fechar" style="color: white;">X</a>
-         <form action="../../includes/remover.php" method="get">
-           <input type="text" name="titulo" placeholder="Digite o nome da série">
-           <button style="background-color: rgb(100, 15, 48); color: white">Remover</button>
+         <form action="../../controllers/deletar-serie.php" method="get">
+           <select name="serieRemover" id="igeneroRemover">
+             <option disabled selected>Selecione a série</option>
+             <?php foreach ($seriesSelect as $serie) { ?>
+               <option value="<?php echo $serie["id"]; ?>">
+                 <?php echo htmlspecialchars($serie["titulo"]); ?>
+               </option>
+
+             <?php } ?>
+           </select>
+           <button type="submit" style="background-color: rgb(100, 15, 48); color: white">Remover</button>
          </form>
        </div>
 
      </div>
 
-     <h1 style="color: white">Editar Série</h1>
      <div class="formulario">
-      <form method="POST">
-      <select name="titulo_id" id="idtituloEd" onchange="this.form.submit()">
-        <option value="" disabled selected>Series</option>
-        <?php foreach ($titulos as $tituloOpcoes) { ?>
-            <option value="<?php echo $tituloOpcoes['id']; ?>"
-              <?php
-              if (($tituloId ?? '') == $tituloOpcoes['id']) {
-                  echo 'selected';
-              }
-              ?>>
-              <?php echo htmlspecialchars($tituloOpcoes["titulo"]); ?>
-            </option>
-        <?php } ?>
-    </select>
-      </form>
-        <form action="../../controllers/editar-serie.php" method="POST">
-        <input type="hidden" name="id" value="<?php echo htmlspecialchars($serieSelecionada['id'] ?? ''); ?>">
-         <input type="text" name="titulo" id="tituloEd" placeholder="Titulo" value="<?php echo htmlspecialchars((string)($serieSelecionada['titulo'] ?? '')); ?>"><br>
-          <select name="categoria_id" id="igeneroEd">
-          <?php foreach ($categorias as $categoria) { ?>
-              <option 
-                  value="<?php echo $categoria['id']; ?>"
-                  <?php
-                  if (($serieSelecionada['categoria_id'] ?? '') == $categoria['id']) {
-                      echo 'selected';
-                  }
-                  ?>>
-                <?php echo htmlspecialchars($categoria['nome']); ?>
-              </option>
-          <?php } ?>
-          </select><br>
+       <h1 style="color: white">Editar Série</h1>
+       <form method="get">
+         <select name="serieEditar" id="igeneroRemover">
+           <option disabled selected>Selecione a série</option>
+           <?php foreach ($seriesSelect as $serie) { ?>
+             <option value="<?php echo $serie["id"]; ?>">
+               <?php echo htmlspecialchars($serie["titulo"]); ?>
+             </option>
+           <?php } ?>
+         </select>
+         <button type="submit" style="background-color: rgb(100, 15, 48); color: white">Selecionar</button>
+       </form>
+
+       <form action="../../controllers/editar-serie.php" method="POST">
+         <input type="hidden" name="id" value="<?php echo htmlspecialchars($serieSelecionada['id'] ?? ''); ?>">
+         <input type="text" name="titulo" id="tituloEd" placeholder="Titulo" value="<?php echo htmlspecialchars(($serieSelecionada['titulo'] ?? '')); ?>"><br>
+         <select name="categoria_id" id="igeneroEd">
+           <?php foreach ($categorias as $categoria) { ?>
+             <option value="<?php echo $categoria['id']; ?>"> <?php echo htmlspecialchars($categoria['nome']); ?></option>
+           <?php } ?>
+         </select><br>
          <input type="text" name="imagem" id="imagemEd" placeholder="URL da imagem" value="<?php echo htmlspecialchars($serieSelecionada['imagem'] ?? ''); ?>"><br>
          <textarea name="descricao" id="descricaoEd" placeholder="Descrição"><?php echo htmlspecialchars($serieSelecionada['descricao'] ?? ''); ?></textarea><br>
          <textarea name="descricaoMenor" id="descricaoMenorEd" placeholder="Descrição menor"><?php echo htmlspecialchars($serieSelecionada['descricaoMenor'] ?? ''); ?></textarea><br>
          <button type="submit" style="background-color: rgb(100, 15, 48); color: white">Editar</button><br>
-        </form>
-
+       </form>
+     </div>
      <div class="mensagens">
        <?php
         if (isset($_SESSION["sucesso"])) {

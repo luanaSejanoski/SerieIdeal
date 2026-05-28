@@ -16,11 +16,6 @@ header {
     outline: solid white 1px;
 }
 
-/* header h1{
-    color: rgb(255, 255, 255);
-    font-size: 50px;
-    font-style: italic;
-} */
 a {
     text-decoration: none;
 }
@@ -309,8 +304,12 @@ button {
     transition: 0.2s;
 }
 
+.mainDashboard{
+    
+    background-color: aqua;
+}
+
 .formulario {
-    width: 250px;
     margin: auto;
     resize: none;
     background-color: rgb(41, 35, 41);
@@ -319,6 +318,7 @@ button {
     outline: solid white 1px;
     width: 500px;
     margin-top: 30px;
+    height: 500px;
 }
 
 textarea {
