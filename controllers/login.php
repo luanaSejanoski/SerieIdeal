@@ -6,9 +6,10 @@
     if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
         $usuario = $_POST['user'] ?? "";
+
         $senha = $_POST['senha'] ?? "";
 
-        $sql = 'SELECT username, senha FROM usuarios
+        $sql = 'SELECT id, username, senha, admin FROM usuarios
         WHERE username = :usuario';
 
         $stmt = $pdo->prepare($sql);
@@ -20,11 +21,13 @@
 
         $usuarioExiste = $stmt->fetch();
 
-
         if ($usuarioExiste && password_verify($senha, $usuarioExiste['senha'])) {
 
-            $_SESSION["usuario"] = $usuario;
+            $_SESSION["id"] = $usuarioExiste['id'];
+            $_SESSION["usuario"] = $usuarioExiste["username"];
             $_SESSION["Logado"] = true;
+            $_SESSION["admin"] = $usuarioExiste["admin"];
+         
 
             header("Location: ../views/home.php");
             exit;

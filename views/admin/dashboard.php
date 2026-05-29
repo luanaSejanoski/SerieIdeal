@@ -3,6 +3,12 @@
 
   require_once '../../config/database.php';
 
+  //verifica se o usuario tem é um administrador
+  if (!isset($_SESSION['id']) || !isset($_SESSION['admin']) || $_SESSION['admin'] != 1) {
+    header('Location: ../login.php');
+    exit;
+  }
+
   //sql pra pegar todos os dados da série de acordo com o id 
   $tituloId = $_GET["titulo_id"] ?? "";
   $sql = 'SELECT s.*, c.nome AS genero
@@ -21,24 +27,24 @@ WHERE s.id = :id';
 
   $series = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
-//sql pra pegar o titulo e o id das series para fazer as opçoes do select
+  //sql pra pegar o titulo e o id das series para fazer as opçoes do select
   $sqlSelect =  $sql = 'SELECT titulo, id FROM series';
   $stmtSelect = $pdo->query($sqlSelect);
   $seriesSelect = $stmtSelect->fetchAll(PDO::FETCH_ASSOC);
-  
-//sql pra pegar todos os dados da serie selecionada
+
+  //sql pra pegar todos os dados da serie selecionada
   $serieSelecionada = null;
-if (isset($_GET['serieEditar'])) {
+  if (isset($_GET['serieEditar'])) {
     $sql = 'SELECT * FROM series WHERE id = :id';
     $stmt = $pdo->prepare($sql);
     $stmt->execute([
-        ':id' => $_GET['serieEditar']
+      ':id' => $_GET['serieEditar']
     ]);
 
     $serieSelecionada = $stmt->fetch(PDO::FETCH_ASSOC);
-}
+  }
 
-//sql pra pegar todos os dados das categorias
+  //sql pra pegar todos os dados das categorias
   $sqlCategorias = 'SELECT * FROM categorias';
   $stmtCategorias = $pdo->query($sqlCategorias);
   $categorias = $stmtCategorias->fetchAll(PDO::FETCH_ASSOC);
@@ -85,7 +91,7 @@ if (isset($_GET['serieEditar'])) {
        <a href="#abrir" style="color: rgba(255, 152, 191, 1);">Remover série</a>
        <div id="abrir" class="caixaRemover">
          <a href="#" class="fechar" style="color: white;">X</a>
-         <form action="../../controllers/deletar-serie.php" method="get">
+         <form action="../../controllers/deletar-serie.php" method="POST">
            <select name="serieRemover" id="igeneroRemover">
              <option disabled selected>Selecione a série</option>
              <?php foreach ($seriesSelect as $serie) { ?>
@@ -104,7 +110,7 @@ if (isset($_GET['serieEditar'])) {
      <div class="formulario">
        <h1 style="color: white">Editar Série</h1>
        <form method="get">
-         <select name="serieEditar" id="igeneroRemover">
+         <select name="serieEditar" id="igeneroEditar">
            <option disabled selected>Selecione a série</option>
            <?php foreach ($seriesSelect as $serie) { ?>
              <option value="<?php echo $serie["id"]; ?>">

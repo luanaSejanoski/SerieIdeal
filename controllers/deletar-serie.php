@@ -3,7 +3,7 @@ session_start();
 
 require_once '../config/database.php';
 
-$serie = $_GET["serieRemover"];
+$serie = $_POST["serieRemover"];
 
 $sql = "DELETE FROM series WHERE id = :serie";
 $stmt = $pdo->prepare($sql);
