@@ -29,7 +29,7 @@
             $_SESSION["admin"] = $usuarioExiste["admin"];
          
 
-            header("Location: ../views/home.php");
+            header("Location: ../views/admin/dashboard.php");
             exit;
         } else {
             $_SESSION["erro_login"] = "Usuário ou senha inválidos";

@@ -62,7 +62,8 @@ WHERE s.id = :id';
  </head>
 
  <body>
-   <?php require_once '../navbar.php'; ?>
+   <?php require_once '../navbaradmin.php'; ?>
+   <h1 style="text-align: center; color:white">Bem vindo, <?php echo $_SESSION['usuario'] . "!";?></h1>
 
    <main class="mainDashboard" style="display: flex;
     align-items: center;
