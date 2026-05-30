@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost
--- Tempo de geração: 24-Maio-2026 às 18:37
+-- Tempo de geração: 30-Maio-2026 às 18:00
 -- Versão do servidor: 10.4.28-MariaDB
 -- versão do PHP: 8.2.4
 
@@ -19,8 +19,7 @@ SET time_zone = "+00:00";
 
 --
 -- Banco de dados: `bancoIdeal`
-CREATE DATABASE IF NOT EXISTS bancoIdeal;
-USE bancoIdeal;
+--
 
 -- --------------------------------------------------------
 
@@ -42,7 +41,8 @@ CREATE TABLE `avaliacoes` (
 
 INSERT INTO `avaliacoes` (`id`, `usuario_id`, `serie_id`, `nota`, `comentario`) VALUES
 (1, 1, 3, 5, 'Fico sempre feliz assistindo essa série!'),
-(2, 2, 8, 3, 'É um bombom mix de tão romântico!');
+(2, 2, 8, 3, 'É um bombom mix de tão romântico!'),
+(4, 3, 8, 4, 'Eu abro a porta e puxo a cadeira do jantar\r\nÀ luz de velas pra ela se apaixonar\r\nEu mando flores, chocolates e cartão\r\nO meu problema sempre foi ter grande coração\r\n\r\nEu ligo no outro dia no estilo Don Juan\r\nDormiu bem, meu amor?\r\nÉ domingo de manhã\r\nVamos pegar uma praia\r\nDeu saudade do seu beijo\r\nTrato todas iguais\r\nEsse é meu defeito\r\n\r\nTô namorando todo mundo\r\n99% anjo, perfeito\r\nMas aquele 1% é vagabundo\r\nAquele 1% é vagabundo\r\nSafado e elas gostam\r\n\r\nEu abro a porta e puxo a cadeira do jantar\r\nÀ luz de velas pra ela se apaixonar\r\nEu mando flores, chocolates e cartão\r\nO meu problema sempre foi ter grande coração\r\n\r\nEu ligo no outro dia no estilo Don Juan\r\nDormiu bem, meu amor?\r\nÉ domingo de manhã\r\nVamos pegar uma praia\r\nDeu saudade do seu beijo\r\nTrato todas iguais\r\nEsse é meu defeito\r\n\r\nTô namorando todo mundo\r\n99% anjo, perfeito\r\nMas aquele 1% é vagabundo\r\nAquele 1% é vagabundo\r\nSafado e elas gostam');
 
 -- --------------------------------------------------------
 
@@ -97,7 +97,8 @@ INSERT INTO `series` (`id`, `titulo`, `descricao`, `descricaoMenor`, `imagem`, `
 (6, 'Friends', 'Friends é uma sitcom clássica que acompanha a vida de seis amigos — Rachel, Monica, Phoebe, Joey, Chandler e Ross — vivendo em Manhattan, Nova York, durante os anos 90 e início dos anos 2000. A série explora com humor as peripécias da vida adulta, incluindo relacionamentos amorosos, dilemas profissionais, amizade e a busca pela independência.', 'Seis amigos enfrentam com muito humor os dilemas amorosos, profissionais e pessoais da vida adulta em Nova York.', 'https://tse2.mm.bing.net/th/id/OIP.o0Zt3grd0PIwHLKc-eUcnQHaEK?rs=1&pid=ImgDetMain&o=7&rm=3', 2),
 (7, 'Dark', 'Dark é uma série alemã de suspense e ficção científica da Netflix que explora o desaparecimento de crianças na cidade de Winden, revelando segredos obscuros entre quatro famílias. A trama conecta os anos de 1953, 1986 e 2019, focando em viagens no tempo e o trágico ciclo repetitivo a cada 33 anos.', 'O desaparecimento de duas crianças revela um mistério de viagem no tempo que conecta quatro famílias ao longo de gerações.', 'https://images.plex.tv/photo?size=large-1280&url=https:%2F%2Fmetadata-static.plex.tv%2F7%2Fgracenote%2F76d02c3db0298635a9eea48b84bf5577.jpg', 5),
 (8, 'Outlander', 'Outlander narra a história de Claire Randall, uma enfermeira de combate de 1945 que é misteriosamente transportada para a Escócia de 1743. Presa no passado, ela se vê dividida entre a lealdade ao seu marido no futuro e a paixão por Jamie Fraser, um jovem guerreiro escocês, enquanto enfrenta intrigas, batalhas e o perigo de um antepassado cruel.', 'Uma enfermeira de 1945 é transportada para a Escócia de 1743 e se divide entre dois amores em tempos diferentes.', 'https://www.showbizjunkies.com/wp-content/uploads/2023/05/outlander-season-7-official-poster.jpg', 6),
-(10, 'Jujutsu Kaisen', 'Sofrimento, arrependimento, vergonha: os sentimentos negativos dos humanos tornam-se Maldições, causando terríveis acidentes que podem levar até mesmo à morte. E pra piorar, Maldições só podem ser exorcizadas por outras Maldições. Certo dia, para salvar amigos que estavam sendo atacados por Maldições, Yuji Itadori engole o dedo do Ryomen-Sukuna, absorvendo sua Maldição. Ele então decide se matricular no Colégio Técnico de Feitiçaria de Tóquio, uma organização que combate as Maldições... e assim começa a heróica lenda do garoto que tornou-se uma Maldição para exorcizar uma Maldição.', 'Yuji Itadori entra no mundo das Maldições após engolir um objeto amaldiçoado e passa a combater criaturas sobrenaturais perigosas.', 'https://disney.images.edge.bamgrid.com/ripcut-delivery/v2/variant/disney/019ba07b-75ed-7214-ac7f-1dca8c0cb881/compose?aspectRatio=1.78&format=webp&width=1200', 7);
+(10, 'Jujutsu Kaisen', 'Sofrimento, arrependimento, vergonha: os sentimentos negativos dos humanos tornam-se Maldições, causando terríveis acidentes que podem levar até mesmo à morte. E pra piorar, Maldições só podem ser exorcizadas por outras Maldições. Certo dia, para salvar amigos que estavam sendo atacados por Maldições, Yuji Itadori engole o dedo do Ryomen-Sukuna, absorvendo sua Maldição. Ele então decide se matricular no Colégio Técnico de Feitiçaria de Tóquio, uma organização que combate as Maldições... e assim começa a heróica lenda do garoto que tornou-se uma Maldição para exorcizar uma Maldição.', 'Yuji Itadori entra no mundo das Maldições após engolir um objeto amaldiçoado e passa a combater criaturas sobrenaturais perigosas.', 'https://disney.images.edge.bamgrid.com/ripcut-delivery/v2/variant/disney/019ba07b-75ed-7214-ac7f-1dca8c0cb881/compose?aspectRatio=1.78&format=webp&width=1200', 7),
+(14, 'Uma Família da Pesada ', 'A série animada apresenta as aventuras da família Griffin. O ignorante Peter e sua esposa Lois residem em Quahog, em Rhode Island e têm três filhos. Meg, a filha mais velha, é uma pária social, e o adolescente Chris é estranho e sem noção quando se trata do sexo oposto. O mais novo, Stewie, é um bebê gênio decidido a matar sua mãe e destruir o mundo. O cachorro falante, Brian, mantém Stewie sob controle enquanto toma martinis e resolve seus próprios problemas de vida.', 'Uma família completamente caótica vive situações absurdas enquanto tenta sobreviver à própria insanidade diária.', 'https://i.ytimg.com/vi/83_luIWhL2s/hq720.jpg?sqp=-oaymwEhCK4FEIIDSFryq4qpAxMIARUAAAAAGAElAADIQj0AgKJD&rs=AOn4CLAPSU8_PfGojR8OnSakV9fxXLsa1g', 2);
 
 -- --------------------------------------------------------
 
@@ -108,17 +109,20 @@ INSERT INTO `series` (`id`, `titulo`, `descricao`, `descricaoMenor`, `imagem`, `
 CREATE TABLE `usuarios` (
   `id` int(11) NOT NULL,
   `username` varchar(30) DEFAULT NULL,
-  `senha` varchar(255) DEFAULT NULL
+  `senha` varchar(255) DEFAULT NULL,
+  `admin` tinyint(1) NOT NULL DEFAULT 0
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Extraindo dados da tabela `usuarios`
 --
 
-INSERT INTO `usuarios` (`id`, `username`, `senha`) VALUES
-(1, 'NivaldoBoga', '1234'),
-(2, 'AyrtonKabare', '5678'),
-(3, 'WesleySafadão', '$2y$10$ltdIbQopI07nAkCN3DeKTOmRdKsMDvtVOLlq1BPRwNHsT5iTPGVsm');
+INSERT INTO `usuarios` (`id`, `username`, `senha`, `admin`) VALUES
+(1, 'NivaldoBoga', '1234', 0),
+(2, 'AyrtonKabare', '5678', 0),
+(3, 'WesleySafadão', '$2y$10$ltdIbQopI07nAkCN3DeKTOmRdKsMDvtVOLlq1BPRwNHsT5iTPGVsm', 0),
+(4, 'lu', '$2y$10$4gDLlt4szQlRLVyAuCezJO/wlwB1atBwkjSbeHr9s8bYhxkDSVd0u', 0),
+(5, 'adminIdeal', '$2y$10$qxzX.Wyx3bh/ZG/iIGxBFuS0kjzCQNSvx3j76JS/j7Y4vuHUyl5qq', 1);
 
 --
 -- Índices para tabelas despejadas
@@ -161,7 +165,7 @@ ALTER TABLE `usuarios`
 -- AUTO_INCREMENT de tabela `avaliacoes`
 --
 ALTER TABLE `avaliacoes`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT de tabela `categorias`
@@ -173,13 +177,13 @@ ALTER TABLE `categorias`
 -- AUTO_INCREMENT de tabela `series`
 --
 ALTER TABLE `series`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=11;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
 
 --
 -- AUTO_INCREMENT de tabela `usuarios`
 --
 ALTER TABLE `usuarios`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- Restrições para despejos de tabelas
