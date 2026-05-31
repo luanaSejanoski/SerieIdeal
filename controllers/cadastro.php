@@ -1,10 +1,6 @@
-<?php
+<?php require_once '../config/database.php';
+
 session_start();
-
-require_once '../config/database.php';
-require_once '../helpers/csrf.php';
-
-validarTokenCSRF();
 
 if ($_SERVER["REQUEST_METHOD"] === "POST") {
 
@@ -44,8 +40,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") {
                 ]
             );
 
-            header("Location: ../views/login.php");
-            exit;
+            $_SESSION['mensagem'] = "Conta cadastrada!";
         }
     }
 

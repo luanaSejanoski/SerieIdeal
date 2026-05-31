@@ -1,15 +1,12 @@
-<?php
+<?php 
 session_start();
 require_once '../views/navbar.php';
-require_once '../helpers/csrf.php';
-
-$token = gerarTokenCSRF();
 
 $mensagem = "";
 
 if (isset($_SESSION["mensagem"])) {
-  $mensagem = $_SESSION["mensagem"];
-  unset($_SESSION['mensagem']);
+    $mensagem = $_SESSION["mensagem"];
+    unset($_SESSION['mensagem']);
 }
 ?>
 
@@ -24,18 +21,16 @@ if (isset($_SESSION["mensagem"])) {
 </head>
 
 <body>
-  <div class="formulario">
-    <h1 style="text-align: center; color:white">Cadastrar-se</h1>
-    <form action="../controllers/cadastro.php" method="POST">
-      <input type="hidden" name="tokenCSRF" value="<?php echo $token; ?>">
-      <br><br><label style="color: white;" for="username">Usuário:</label>
-      <input type="text" name="username" id="iuser"><br><br>
-      <label style="color: white" for="senha">Senha:</label>
-      <input type="password" name="senha" id="isenha"><br><br>
-      <button type="submit">Criar conta</button>
-      <p style="text-align: center;"><?php echo $mensagem ?? ""; ?></p>
-    </form>
-  </div>
+    <div class="formulario">
+      <form action="../controllers/cadastro.php" method="POST">
+        <br><br><label style="color: white;" for="username">Usuário:</label>
+        <input type="text" name="username" id="iuser"><br><br>
+        <label style="color: white" for="senha">Senha:</label>
+        <input type="password" name="senha" id="isenha"><br><br>
+        <button type="submit">Criar conta</button>
+        <p style="text-align: center;"><?php echo $mensagem ?? ""; ?></p>
+      </form>
+    </div>
 
 </body>
 

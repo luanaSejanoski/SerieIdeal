@@ -2,9 +2,6 @@
 session_start();
 
 require_once '../config/database.php';
-require_once '../helpers/csrf.php';
-
-validarTokenCSRF();
 
 $serie = $_POST["serieRemover"];
 
