@@ -5,25 +5,30 @@ require_once '../config/database.php';
 require_once "../includes/funcoes.php";
 
 
-$tituloRecebido = $_GET["titulo"] ?? "";
-
+$tituloRecebido = $_GET["id"] ?? "";
 $sql = 'SELECT s.*, c.nome AS genero
-FROM series s
-LEFT JOIN categorias c
-ON s.categoria_id = c.id
-WHERE s.titulo = :titulo';
+        FROM series s
+        LEFT JOIN categorias c
+        ON s.categoria_id = c.id
+        WHERE s.id = :id';
 
 $stmt = $pdo->prepare($sql);
 
-$stmt->execute(
-    [
-        ':titulo' => $tituloRecebido
-    ]
-);
-
+$stmt->execute([
+    ':id' => $tituloRecebido
+]);
 
 $serieEncontrada = $stmt->fetch();
 
+$jaAvaliou = false;
+//verifica se usuario ja avaliou
+if(isset ($_SESSION['id']) && $serieEncontrada){
+$jaAvaliou = usuarioAvaliou(
+ $_SESSION['id'],
+ $serieEncontrada['id'],
+ $pdo
+);
+}
 
 ?>
 <!DOCTYPE html>
@@ -39,8 +44,10 @@ $serieEncontrada = $stmt->fetch();
     <main class="mainDetalhes">
         <div>
             <?php
+            //verifica se serie foi encontrada
             if ($serieEncontrada != null) {
-                exibirDetalhes($serieEncontrada);
+                $media = mediaNotas($serieEncontrada['id'], $pdo);
+                exibirDetalhes($serieEncontrada, $media, $jaAvaliou);
             } else {
                 echo "<h2>Série não encontrada!</h2>";
             }
@@ -50,12 +57,20 @@ $serieEncontrada = $stmt->fetch();
             <div class="listaComentarios">
             <?php
             // echo $serieEncontrada["id"];
-            exibirComentarios($serieEncontrada["id"], $pdo);
+           
+            exibirComentarios($serieEncontrada["id"], $pdo);//exibe comentario
+            $media = mediaNotas($serieEncontrada['id'], $pdo);//pega notas para calcular media
             ?>
+
             </div>
-            <form class="formComentario" action="" method="get">
+           <form class="formComentario" action="../controllers/avaliacoes.php" method="POST">
+
+           <input type="hidden" name="serie_id"  value="<?php echo $serieEncontrada['id']; ?>"
+    >
             <input type="text" name="comentario" id="icomentario">
-            <button>Publicar</button>
+
+            <button type="submit">Publicar</button>
+
             </form>
         </div>
     </main>

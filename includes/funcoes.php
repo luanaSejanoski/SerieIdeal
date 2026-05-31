@@ -18,7 +18,7 @@ function exibirInformacoes(array $series)
             echo '<h2>' . $serie["titulo"] . '</h2>';
             echo '<p class="sinopseCurta">' . $serie["descricaoMenor"] . '</p>';
             echo '<div class="botaoVerMais">';
-            echo '<a class="verMais" href="../views/detalhes.php?titulo=' . urlencode($serie["titulo"]) . '">';
+            echo '<a class="verMais" href="../views/detalhes.php?id=' . urlencode($serie["id"]) . '">';
             echo 'Ver mais';
             echo '</a>';
             echo '</div>';
@@ -28,17 +28,34 @@ function exibirInformacoes(array $series)
     }
 }
 
-function exibirDetalhes(array $serie)
+function exibirDetalhes(array $serie, $media, $jaAvaliou)
 {
     echo '<div class="todasAsSeries">';
     echo '<div class="seriesDetalhadas" style=" background-image:  linear-gradient(to right, #131013f2 25%,
 #2e2c3059 100%), url(' . $serie["imagem"] . ');">';
-    echo '<div class="divSerie""><h2>' . $serie["titulo"] . ' | ' . $serie["genero"] . '</h2>';
+    echo '<div class="divSerie"><h2>' . $serie["titulo"] . ' | ' . $serie["genero"] . '</h2>';
     echo '<p class="sinopse" style="text-align: left; margin:0; width:100%">' . $serie["descricao"] . '</p>';
-    echo '<p>Nota: ⭐0.0</p></div>';
-    echo '</div>';
-    echo '</div>';
-}
+    echo '<p>Nota: ⭐' . number_format($media, 1). '</p>';
+
+    if(!$jaAvaliou){
+    echo '<form class="avaliar" action="../controllers/avaliacoes.php" method="POST">';
+    echo '<input type="hidden" name="serie_id" value="' . $serie['id'] . '">';
+    
+    echo '<button name="nota" value="1">⭐</button>';
+    echo '<button name="nota" value="2">⭐⭐</button>';
+    echo '<button name="nota" value="3">⭐⭐⭐</button>';
+    echo '<button name="nota" value="4">⭐⭐⭐⭐</button>';
+    echo '<button name="nota" value="5">⭐⭐⭐⭐⭐</button>';
+
+    echo '</form>';
+
+    }else{
+        echo "";
+        }
+        echo '</div>';
+        echo '</div>';
+        echo '</div>';
+    }
 
 function exibirComentarios(int $serieId, PDO $pdo)
 {
@@ -46,7 +63,8 @@ function exibirComentarios(int $serieId, PDO $pdo)
     FROM usuarios u
     INNER JOIN avaliacoes a
     ON u.id = a.usuario_id
-    WHERE serie_id = :id';
+    WHERE serie_id = :id
+    AND comentario IS NOT NULL';
 
     $stmt = $pdo->prepare($sql);
     $stmt->execute(
@@ -104,4 +122,41 @@ WHERE s.titulo LIKE :titulo';
 
     $resultados = $stmt->fetchAll(PDO::FETCH_ASSOC);
     return $resultados;
+}
+
+function mediaNotas(int $serieId, PDO $pdo)
+{
+    $sql = 'SELECT AVG(nota) AS media
+    FROM avaliacoes
+    WHERE serie_id = :id
+    AND nota IS NOT NULL';
+
+    $stmt = $pdo->prepare($sql);
+    $stmt->execute(
+        [
+            ':id' => $serieId
+        ]
+    );
+
+    $resultados = $stmt->fetch(PDO::FETCH_ASSOC);
+    return $resultados['media'];
+
+
+}
+
+function usuarioAvaliou(int $usuarioId, int $serieId, PDO $pdo)
+{
+$sql = "SELECT id
+        FROM avaliacoes
+        WHERE usuario_id = :usuario_id
+        AND serie_id = :serie_id
+        AND nota IS NOT NULL";
+
+        $stmt = $pdo->prepare($sql);
+
+        $stmt->execute([
+    ':usuario_id' => $usuarioId,
+    ':serie_id' => $serieId
+]);
+       return $stmt->fetch();
 }
