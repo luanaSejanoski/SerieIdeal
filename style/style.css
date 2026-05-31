@@ -50,6 +50,11 @@ nav a:hover {
     transition: 0.2s;
 }
 
+.desabilitado{
+    color: gray;
+    cursor: not-allowed;
+}
+
 main {
     text-align: center;
 }
@@ -180,6 +185,7 @@ button {
 }
 
 
+
 .imgEgenero,
 .imgEgeneroDetalhadas {
     position: relative;
@@ -244,7 +250,6 @@ button {
     width: 60%;
     text-align: left;
 }
-
 
 .avaliar{
     display: flex;

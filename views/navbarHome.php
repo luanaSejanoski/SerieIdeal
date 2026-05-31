@@ -1,4 +1,6 @@
 <?php
+
+
 require_once '../config/database.php';
 
 $sql = "SELECT * FROM categorias";
@@ -15,9 +17,17 @@ $categorias = $stmt->fetchAll(PDO::FETCH_ASSOC);
     </a>
 
     <nav>
-      <a href="home.php">Home</a>
-      <a href="admin/dashboard.php">Nova Série</a>
-      <a href="login.php">Login</a>
+    <a href="home.php">Home</a>
+        <?php if($_SESSION["admin"] == 1){?>
+        <a href="admin/dashboard.php">Nova Série</a>
+        <?php }else{?>
+         <a class="desabilitado" title="Apenas administradores podem cadastrar séries">Nova série</a>
+          <?php }?>
+       <?php if (isset($_SESSION["Logado"])) { ?>
+        <a href="../controllers/logout.php">Encerrar sessão</a>
+      <?php } else { ?>
+        <a href="login.php">Login</a>
+      <?php } ?>
     </nav>
 
     <div style="display:flex; align-items:center" class="buscar">

@@ -35,6 +35,7 @@ function exibirDetalhes(array $serie, $media, $jaAvaliou)
 #2e2c3059 100%), url(' . $serie["imagem"] . ');">';
     echo '<div class="divSerie"><h2>' . $serie["titulo"] . ' | ' . $serie["genero"] . '</h2>';
     echo '<p class="sinopse" style="text-align: left; margin:0; width:100%">' . $serie["descricao"] . '</p>';
+
     echo '<p>Nota: ⭐' . number_format($media, 1). '</p>';
 
     if(!$jaAvaliou){
@@ -48,7 +49,6 @@ function exibirDetalhes(array $serie, $media, $jaAvaliou)
     echo '<button name="nota" value="5">⭐⭐⭐⭐⭐</button>';
 
     echo '</form>';
-
     }else{
         echo "";
         }
@@ -56,6 +56,7 @@ function exibirDetalhes(array $serie, $media, $jaAvaliou)
         echo '</div>';
         echo '</div>';
     }
+
 
 function exibirComentarios(int $serieId, PDO $pdo)
 {
@@ -74,12 +75,12 @@ function exibirComentarios(int $serieId, PDO $pdo)
     );
 
     $comentarios = $stmt->fetchAll(PDO::FETCH_ASSOC);
-    
-    if($comentarios != null){
-        foreach($comentarios as $comentario){
-            echo '<p><strong style="color:#FDD838;">'.$comentario["username"] . ':</strong> ' . $comentario["comentario"] . '</p> ';
+
+    if ($comentarios != null) {
+        foreach ($comentarios as $comentario) {
+            echo '<p><strong style="color:#FDD838;">' . $comentario["username"] . ':</strong> ' . $comentario["comentario"] . '</p> ';
         }
-    }else{
+    } else {
         echo '<p style="text-align:center;">Ainda não há comentários para essa série :(</p>';
     }
 }
