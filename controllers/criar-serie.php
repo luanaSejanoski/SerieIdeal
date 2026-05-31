@@ -1,6 +1,9 @@
 <?php 
 session_start();
 require_once '../config/database.php';
+require_once '../helpers/csrf.php';
+
+validarTokenCSRF();
 
 // if(!isset($_SESSION["Logado"]) || $_SESSION["Logado"] != true){
 //     header("Location: ../login.php");//redireciona a pagina login

@@ -50,6 +50,11 @@ nav a:hover {
     transition: 0.2s;
 }
 
+.desabilitado{
+    color: gray;
+    cursor: not-allowed;
+}
+
 main {
     text-align: center;
 }
@@ -180,6 +185,7 @@ button {
 }
 
 
+
 .imgEgenero,
 .imgEgeneroDetalhadas {
     position: relative;
@@ -244,6 +250,35 @@ button {
     width: 60%;
     text-align: left;
 }
+
+.avaliar{
+    display: flex;
+    flex-direction: column;
+    justify-content: left;
+    margin: 0;
+    height: 150px;
+    /* background-color: #0D0B0D; */
+}
+
+.divSerie button {
+    background: none;
+    border: none;
+    font-size: 1em;
+    cursor: pointer;
+    transition: 0.5s ;
+    width: 150px;
+    height: 25px;
+    text-align: left;
+    margin-top: 3px;
+    /* background-color: #640f30; */
+    
+}
+
+.divSerie button:hover {
+    font-size: 1.1em;
+    transition: 0.5s;
+}
+
 
 .seriesDetalhadas img {
     width: 100%;

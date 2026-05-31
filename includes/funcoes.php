@@ -33,9 +33,20 @@ function exibirDetalhes(array $serie)
     echo '<div class="todasAsSeries">';
     echo '<div class="seriesDetalhadas" style=" background-image:  linear-gradient(to right, #131013f2 25%,
 #2e2c3059 100%), url(' . $serie["imagem"] . ');">';
-    echo '<div class="divSerie""><h2>' . $serie["titulo"] . ' | ' . $serie["genero"] . '</h2>';
+    echo '<div class="divSerie"><h2>' . $serie["titulo"] . ' | ' . $serie["genero"] . '</h2>';
     echo '<p class="sinopse" style="text-align: left; margin:0; width:100%">' . $serie["descricao"] . '</p>';
-    echo '<p>Nota: ⭐0.0</p></div>';
+    echo '<p>Nota: ⭐0.0</p>';
+    echo '<form class="avaliar" action="../controllers/avaliar.php" method="POST">';
+    echo '<input type="hidden" name="serie_id" value="' . $serie['id'] . '">';
+
+    echo '<button name="nota" value="1">⭐</button>';
+    echo '<button name="nota" value="2">⭐⭐</button>';
+    echo '<button name="nota" value="3">⭐⭐⭐</button>';
+    echo '<button name="nota" value="4">⭐⭐⭐⭐</button>';
+    echo '<button name="nota" value="5">⭐⭐⭐⭐⭐</button>';
+
+    echo '</form>';
+    echo '</div>';
     echo '</div>';
     echo '</div>';
 }
@@ -56,12 +67,12 @@ function exibirComentarios(int $serieId, PDO $pdo)
     );
 
     $comentarios = $stmt->fetchAll(PDO::FETCH_ASSOC);
-    
-    if($comentarios != null){
-        foreach($comentarios as $comentario){
-            echo '<p><strong style="color:#FDD838;">'.$comentario["username"] . ':</strong> ' . $comentario["comentario"] . '</p> ';
+
+    if ($comentarios != null) {
+        foreach ($comentarios as $comentario) {
+            echo '<p><strong style="color:#FDD838;">' . $comentario["username"] . ':</strong> ' . $comentario["comentario"] . '</p> ';
         }
-    }else{
+    } else {
         echo '<p style="text-align:center;">Ainda não há comentários para essa série :(</p>';
     }
 }
