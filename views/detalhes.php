@@ -3,6 +3,9 @@ session_start();
 require_once '../views/navbar.php';
 require_once '../config/database.php';
 require_once "../includes/funcoes.php";
+require_once '../helpers/csrf.php';
+
+$token = gerarTokenCSRF();
 
 
 $tituloRecebido = $_GET["id"] ?? "";
@@ -39,7 +42,7 @@ $serieEncontrada = $stmt->fetch();
             //verifica se serie foi encontrada
             if ($serieEncontrada != null) {
                 $media = mediaNotas($serieEncontrada['id'], $pdo);
-                exibirDetalhes($serieEncontrada, $media);
+                exibirDetalhes($serieEncontrada, $media, $token);
             } else {
                 echo "<h2>Série não encontrada!</h2>";
             }
@@ -47,21 +50,18 @@ $serieEncontrada = $stmt->fetch();
         </div>
         <div class="comentarios">
             <div class="listaComentarios">
-            <?php
-            // echo $serieEncontrada["id"];
-           
-            exibirComentarios($serieEncontrada["id"], $pdo);//exibe comentario
-            $media = mediaNotas($serieEncontrada['id'], $pdo);//pega notas para calcular media
-            ?>
+                <?php
+                exibirComentarios($serieEncontrada["id"], $pdo); //exibe comentario
+                $media = mediaNotas($serieEncontrada['id'], $pdo); //pega notas para calcular media
+                ?>
 
             </div>
-           <form class="formComentario" action="../controllers/avaliacoes.php" method="POST">
+            <form class="formComentario" action="../controllers/avaliacoes.php" method="POST">
+                <input type="hidden" name="tokenCsrf" value="<?php echo $token; ?>">
+                <input type="hidden" name="serie_id" value="<?php echo $serieEncontrada['id']; ?>">
+                <input type="text" name="comentario" id="icomentario">
 
-           <input type="hidden" name="serie_id"  value="<?php echo $serieEncontrada['id']; ?>"
-    >
-            <input type="text" name="comentario" id="icomentario">
-
-            <button type="submit">Publicar</button>
+                <button type="submit">Publicar</button>
 
             </form>
         </div>

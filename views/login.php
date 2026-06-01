@@ -1,5 +1,11 @@
-<?php require_once '../views/navbar.php';
+<?php 
 session_start();
+
+require_once '../views/navbar.php';
+require_once '../helpers/csrf.php';
+
+$token = gerarTokenCSRF();
+
 //verifica se usuario já tem sessão iniciada
 if (isset($_SESSION["Logado"]) && $_SESSION["Logado"] === true) {
     header("Location: ../views/home.php"); //redireciona a pagina home
@@ -25,8 +31,9 @@ if (isset($_SESSION['erro_login'])) {
 <body>
         <div class="formulario">
             <form action="../controllers/login.php" method="POST">
+                <input type="hidden" name="tokenCsrf" value="<?php echo $token; ?>">
                 <br><br><label style="color: white;" for="user">Usuário:</label>
-                <input type="text" name="user" id="iuser"><br><br>
+                <input type="text" name="user" id="iuser" value="<?php echo htmlspecialchars($_COOKIE["ultimoUser"] ?? ""); ?>"><br><br>
                 <label style="color: white" for="senha">Senha:</label>
                 <input type="password" name="senha" id="isenha"><br><br>
 

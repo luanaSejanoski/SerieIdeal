@@ -2,6 +2,9 @@
   session_start();
 
   require_once '../../config/database.php';
+  require_once '../../helpers/csrf.php';
+
+  $token = gerarTokenCSRF();
 
   //verifica se o usuario tem é um administrador
   if (!isset($_SESSION['id']) || !isset($_SESSION['admin']) || $_SESSION['admin'] != 1) {
@@ -63,7 +66,7 @@ WHERE s.id = :id';
 
  <body>
    <?php require_once '../navbaradmin.php'; ?>
-   <h1 style="text-align: center; color:white">Bem vindo, <?php echo $_SESSION['usuario'] . "!";?></h1>
+   <h1 style="text-align: center; color:white">Bem vindo, <?php echo $_SESSION['usuario'] . "!"; ?></h1>
 
    <main class="mainDashboard" style="display: flex;
     align-items: center;
@@ -72,6 +75,7 @@ WHERE s.id = :id';
      <div class="formulario">
        <h1 style="color: white">Cadastrar Série</h1>
        <form action="../../controllers/criar-serie.php" method="POST">
+         <input type="hidden" name="tokenCsrf" value="<?php echo $token; ?>">
          <input type="text" name="titulo" id="tituloCad" placeholder="Titulo" value="<?php echo htmlspecialchars($titulo ?? ''); ?>"><br>
          <select name="categoria_id" id="igeneroCad"><!--  -->
            <option value="" disabled selected>Gênero</option>
@@ -93,6 +97,7 @@ WHERE s.id = :id';
        <div id="abrir" class="caixaRemover">
          <a href="#" class="fechar" style="color: white;">X</a>
          <form action="../../controllers/deletar-serie.php" method="POST">
+           <input type="hidden" name="tokenCsrf" value="<?php echo $token; ?>">
            <select name="serieRemover" id="igeneroRemover">
              <option disabled selected>Selecione a série</option>
              <?php foreach ($seriesSelect as $serie) { ?>
@@ -123,6 +128,7 @@ WHERE s.id = :id';
        </form>
 
        <form action="../../controllers/editar-serie.php" method="POST">
+         <input type="hidden" name="tokenCsrf" value="<?php echo $token; ?>">
          <input type="hidden" name="id" value="<?php echo htmlspecialchars($serieSelecionada['id'] ?? ''); ?>">
          <input type="text" name="titulo" id="tituloEd" placeholder="Titulo" value="<?php echo htmlspecialchars(($serieSelecionada['titulo'] ?? '')); ?>"><br>
          <select name="categoria_id" id="igeneroEd">

@@ -16,8 +16,16 @@ $categorias = $stmt->fetchAll(PDO::FETCH_ASSOC);
 
     <nav>
       <a href="home.php">Home</a>
-      <a href="admin/dashboard.php">Nova Série</a>
-      <a href="login.php">Login</a>
+      <?php if ($_SESSION["admin"] == 1) { ?>
+        <a href="admin/dashboard.php">Nova Série</a>
+      <?php } else { ?>
+        <a class="desabilitado" title="Somente administradores podem cadastrar séries">Nova Série</a>
+      <?php } ?>
+      <?php if (isset($_SESSION["Logado"])) { ?>
+        <a href="../controllers/logout.php">Logout</a>
+      <?php } else { ?>
+        <a href="../views/login.php">Login</a>
+      <?php } ?>
     </nav>
 
     <div style="display:flex; align-items:center" class="buscar">

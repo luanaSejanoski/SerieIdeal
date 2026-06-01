@@ -51,6 +51,11 @@ nav a:hover {
     transition: 0.2s;
 }
 
+.desabilitado{
+    color: #ccc;
+    cursor: not-allowed;
+}
+
 main {
     text-align: center;
 }
