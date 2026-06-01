@@ -29,8 +29,9 @@ function exibirInformacoes(array $series)
     }
 }
 
-function exibirDetalhes(array $serie, $media, $token)
-{
+
+function exibirDetalhes(array $serie, $media, $token){
+
     echo '<div class="todasAsSeries">';
     echo '<div class="seriesDetalhadas" style=" background-image:  linear-gradient(to right, #131013f2 25%,
 #2e2c3059 100%), url(' . $serie["imagem"] . ');">';
