@@ -23,13 +23,9 @@ require_once '../includes/funcoes.php';
 <body>
 
   <?php
-  if (($nome != "" || $genero != "") && empty($catalogo)) {
-    echo "<p class='naoEncontrado'>Série não encontrada!</p>";
-  } else if ($nome == "" && $genero == "") {
+  
     exibirInformacoes($catalogo);
-  } else {
-    exibirDetalhes($catalogo);
-  } ?>
+   ?>
 </body>
 
 </html>

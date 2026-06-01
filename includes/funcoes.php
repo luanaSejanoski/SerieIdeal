@@ -28,7 +28,7 @@ function exibirInformacoes(array $series)
     }
 }
 
-function exibirDetalhes(array $serie, $media, $jaAvaliou)
+function exibirDetalhes(array $serie, float $media)
 {
     echo '<div class="todasAsSeries">';
     echo '<div class="seriesDetalhadas" style=" background-image:  linear-gradient(to right, #131013f2 25%,
@@ -37,10 +37,8 @@ function exibirDetalhes(array $serie, $media, $jaAvaliou)
     echo '<p class="sinopse" style="text-align: left; margin:0; width:100%">' . $serie["descricao"] . '</p>';
     echo '<p>Nota: ⭐' . number_format($media, 1). '</p>';
 
-    if(!$jaAvaliou){
     echo '<form class="avaliar" action="../controllers/avaliacoes.php" method="POST">';
     echo '<input type="hidden" name="serie_id" value="' . $serie['id'] . '">';
-    
     echo '<button name="nota" value="1">⭐</button>';
     echo '<button name="nota" value="2">⭐⭐</button>';
     echo '<button name="nota" value="3">⭐⭐⭐</button>';
@@ -48,14 +46,10 @@ function exibirDetalhes(array $serie, $media, $jaAvaliou)
     echo '<button name="nota" value="5">⭐⭐⭐⭐⭐</button>';
 
     echo '</form>';
-
-    }else{
-        echo "";
-        }
         echo '</div>';
         echo '</div>';
         echo '</div>';
-    }
+}  
 
 function exibirComentarios(int $serieId, PDO $pdo)
 {
@@ -142,21 +136,4 @@ function mediaNotas(int $serieId, PDO $pdo)
     return $resultados['media'];
 
 
-}
-
-function usuarioAvaliou(int $usuarioId, int $serieId, PDO $pdo)
-{
-$sql = "SELECT id
-        FROM avaliacoes
-        WHERE usuario_id = :usuario_id
-        AND serie_id = :serie_id
-        AND nota IS NOT NULL";
-
-        $stmt = $pdo->prepare($sql);
-
-        $stmt->execute([
-    ':usuario_id' => $usuarioId,
-    ':serie_id' => $serieId
-]);
-       return $stmt->fetch();
 }

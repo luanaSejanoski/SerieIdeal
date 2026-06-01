@@ -20,15 +20,7 @@ $stmt->execute([
 
 $serieEncontrada = $stmt->fetch();
 
-$jaAvaliou = false;
-//verifica se usuario ja avaliou
-if(isset ($_SESSION['id']) && $serieEncontrada){
-$jaAvaliou = usuarioAvaliou(
- $_SESSION['id'],
- $serieEncontrada['id'],
- $pdo
-);
-}
+
 
 ?>
 <!DOCTYPE html>
@@ -47,7 +39,7 @@ $jaAvaliou = usuarioAvaliou(
             //verifica se serie foi encontrada
             if ($serieEncontrada != null) {
                 $media = mediaNotas($serieEncontrada['id'], $pdo);
-                exibirDetalhes($serieEncontrada, $media, $jaAvaliou);
+                exibirDetalhes($serieEncontrada, $media);
             } else {
                 echo "<h2>Série não encontrada!</h2>";
             }
