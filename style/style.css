@@ -71,10 +71,11 @@ main {
     flex-direction: column;
     justify-content: space-between;
     width: 20%;
-    height: 520px;
+    border-radius: 3px;
+    height: 500px;
     text-align: left;
     outline: 1px solid white;
-    margin: 1.6%;
+    margin: 3%;
     padding: 0px 5px;
 }
 
@@ -170,7 +171,7 @@ button {
     display: flex;
     flex-wrap: wrap;
     gap: 40px;
-    padding: 3% 5%;
+    padding: 3%;
     width: 100%;
     margin: 0 auto;
     justify-content: center;
@@ -232,6 +233,10 @@ button {
     height: 500px;
 }
 
+.divCard{
+    width: 60%;
+}
+
 .seriesDetalhadas {
     display: flex;
     justify-content: start;
@@ -242,8 +247,8 @@ button {
     padding: 10px;
     border-radius: 15px;
     box-shadow: 0 0 25px 5px rgba(0, 0, 0, 0.5);
-    width: 75%;
-    max-width: 1200px;
+    width: 100%;
+    max-width: 1230px;
     min-height: 500px;
    
 }

@@ -20,6 +20,7 @@ SET time_zone = "+00:00";
 --
 -- Banco de dados: `bancoideal`
    CREATE DATABASE IF NOT EXISTS bancoIdeal;
+   USE bancoIdeal;
 
 -- --------------------------------------------------------
 

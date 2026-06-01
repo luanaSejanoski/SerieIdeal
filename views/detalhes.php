@@ -37,7 +37,7 @@ $serieEncontrada = $stmt->fetch();
 
 <body>
     <main class="mainDetalhes">
-        <div>
+        <div class="divCard">
             <?php
             //verifica se serie foi encontrada
             if ($serieEncontrada != null) {
