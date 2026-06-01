@@ -11,12 +11,16 @@ $sucesso = "";
 
 
 if ($_SERVER["REQUEST_METHOD"] === "POST") { //verifica se o usuário enviou o formulário (clicou em enviar)
-    $id = $_POST["id"] ?? "";
+    $id = $_POST["id"] ?? null;
     $titulo = $_POST["titulo"] ?? "";
     $descricao = $_POST["descricao"] ?? "";
     $descricaoMenor = $_POST["descricaoMenor"] ?? "";
     $imagem = $_POST["imagem"] ?? "";
     $categoria_id = $_POST["categoria_id"] ?? "";
+
+if (empty($id)) {
+    $erros[] = "Selecione uma série";
+}
 
     if (empty($erros)) {
 
@@ -46,7 +50,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") { //verifica se o usuário enviou o f
             exit;
         } catch (PDOException) { //Se der erro no banco:
 
-            $_SESSION["erro"] = "Erro ao salvar no banco";
+            $_SESSION["erros"] = "Erro ao salvar no banco";
 
             header("Location: ../views/admin/dashboard.php");
             exit;

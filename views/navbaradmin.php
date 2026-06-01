@@ -6,7 +6,7 @@
 
     <nav>
       <a href="../home.php">Home</a>
-      <?php if ($_SESSION["admin"] == 1) { ?>
+      <?php if (isset($_SESSION["admin"]) && $_SESSION["admin"] == 1) { ?>
         <a href="dashboard.php">Nova Série</a>
       <?php } else { ?>
         <a class="desabilitado" title="Somente administradores podem cadastrar séries">Nova Série</a>

@@ -25,6 +25,7 @@ if (isset($_SESSION["mensagem"])) {
 
 <body>
   <div class="formulario">
+    <h1 style="text-align:center; color:white">Cadastrar-se</h1>
     <form action="../controllers/cadastro.php" method="POST">
       <input type="hidden" name="tokenCsrf" value="<?php echo $token; ?>">
       <br><br><label style="color: white;" for="username">Usuário:</label>

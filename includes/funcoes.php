@@ -1,6 +1,4 @@
 <?php
-require_once '../config/database.php';
-
 function exibirInformacoes(array $series)
 {
     if (empty($series)) {
@@ -137,4 +135,18 @@ function mediaNotas(int $serieId, PDO $pdo)
 
     $resultados = $stmt->fetch(PDO::FETCH_ASSOC);
     return $resultados['media'];
+}
+
+function exibirMensagem(){
+        if (isset($_SESSION["sucesso"])) {
+          echo "<p class='sucesso'>" . $_SESSION["sucesso"] . "</p>";
+          unset($_SESSION["sucesso"]);
+        }
+
+        if (isset($_SESSION["erros"])) {
+          foreach ($_SESSION["erros"] as $erro) {
+            echo "<p class='erro' style='padding:3px';> • ". $erro . "</p>";
+          }
+          unset($_SESSION["erros"]);
+        } 
 }

@@ -2,6 +2,7 @@
   session_start();
 
   require_once '../../config/database.php';
+  require_once '../../includes/funcoes.php';
   require_once '../../helpers/csrf.php';
 
   $token = gerarTokenCSRF();
@@ -104,7 +105,6 @@ WHERE s.id = :id';
                <option value="<?php echo $serie["id"]; ?>">
                  <?php echo htmlspecialchars($serie["titulo"]); ?>
                </option>
-
              <?php } ?>
            </select>
            <button type="submit" style="background-color: rgb(100, 15, 48); color: white">Remover</button>
@@ -129,7 +129,7 @@ WHERE s.id = :id';
 
        <form action="../../controllers/editar-serie.php" method="POST">
          <input type="hidden" name="tokenCsrf" value="<?php echo $token; ?>">
-         <input type="hidden" name="id" value="<?php echo htmlspecialchars($serieSelecionada['id'] ?? ''); ?>">
+         <input type="hidden" name="id" value="<?php echo htmlspecialchars($serieSelecionada['id'] ?? null); ?>">
          <input type="text" name="titulo" id="tituloEd" placeholder="Titulo" value="<?php echo htmlspecialchars(($serieSelecionada['titulo'] ?? '')); ?>"><br>
          <select name="categoria_id" id="igeneroEd">
            <?php foreach ($categorias as $categoria) { ?>
@@ -142,24 +142,9 @@ WHERE s.id = :id';
          <button type="submit" style="background-color: rgb(100, 15, 48); color: white">Editar</button><br>
        </form>
      </div>
-     <div class="mensagens">
-       <?php
-        if (isset($_SESSION["sucesso"])) {
-
-          echo "<p class='sucesso'>" . $_SESSION["sucesso"] . "</p>";
-          unset($_SESSION["sucesso"]);
-        }
-
-        if (isset($_SESSION["erros"])) {
-
-          foreach ($_SESSION["erros"] as $erro) {
-            echo "<p class='erro'>$erro</p>";
-          }
-          unset($_SESSION["erros"]);
-        } ?>
-   </main>
-
-
+    </main>
+    <div class="mensagens">
+     <?php exibirMensagem()?>
    </div>
  </body>
 

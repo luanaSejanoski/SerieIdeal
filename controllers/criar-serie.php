@@ -15,11 +15,11 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") { //verifica se o usuário enviou o f
     $imagem = $_POST["imagem"] ?? "";
     $categoria_id = $_POST["categoria_id"] ?? "";
 
-    if (trim($titulo) === "") $erros[] = "Título é obrigatório";
-    if (trim($descricao) === "") $erros[] = "Descrição é obrigatória";
-    if (trim($descricaoMenor) === "") $erros[] = "Descrição menor é obrigatória";
-    if (trim($imagem) === "") $erros[] = "Imagem é obrigatória";
-    if (trim($categoria_id) === "")  $erros[] = "Gênero é obrigatório";
+    if (trim($titulo) === "") $erros[] = "Título obrigatório";
+    if (trim($descricao) === "") $erros[] = "Descrição obrigatória";
+    if (trim($descricaoMenor) === "") $erros[] = "Descrição menor obrigatória";
+    if (trim($imagem) === "") $erros[] = "Imagem obrigatória";
+    if (trim($categoria_id) === "")  $erros[] = "Gênero obrigatório";
 
 
     if (empty($erros)) {

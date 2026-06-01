@@ -29,7 +29,8 @@ if (isset($_SESSION['erro_login'])) {
 </head>
 
 <body>
-        <div class="formulario">
+        <div class ="formulario">
+            <h1 style="text-align:center; color:white">Entrar</h1>
             <form action="../controllers/login.php" method="POST">
                 <input type="hidden" name="tokenCsrf" value="<?php echo $token; ?>">
                 <br><br><label style="color: white;" for="user">Usuário:</label>
