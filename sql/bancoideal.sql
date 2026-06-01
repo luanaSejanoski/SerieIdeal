@@ -2,10 +2,10 @@
 -- version 5.2.1
 -- https://www.phpmyadmin.net/
 --
--- Host: localhost
--- Tempo de geração: 30-Maio-2026 às 18:00
--- Versão do servidor: 10.4.28-MariaDB
--- versão do PHP: 8.2.4
+-- Host: 127.0.0.1
+-- Tempo de geração: 01/06/2026 às 21:15
+-- Versão do servidor: 10.4.32-MariaDB
+-- Versão do PHP: 8.2.12
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -18,14 +18,13 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Banco de dados: `bancoIdeal`
-CREATE DATABASE IF NOT EXISTS bancoIdeal;
-USE bancoIdeal;
+-- Banco de dados: `bancoideal`
+   CREATE DATABASE IF NOT EXISTS bancoIdeal;
 
 -- --------------------------------------------------------
 
 --
--- Estrutura da tabela `avaliacoes`
+-- Estrutura para tabela `avaliacoes`
 --
 
 CREATE TABLE `avaliacoes` (
@@ -37,18 +36,21 @@ CREATE TABLE `avaliacoes` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Extraindo dados da tabela `avaliacoes`
+-- Despejando dados para a tabela `avaliacoes`
 --
 
 INSERT INTO `avaliacoes` (`id`, `usuario_id`, `serie_id`, `nota`, `comentario`) VALUES
 (1, 1, 3, 5, 'Fico sempre feliz assistindo essa série!'),
 (2, 2, 8, 3, 'É um bombom mix de tão romântico!'),
-(4, 3, 8, 4, 'Eu abro a porta e puxo a cadeira do jantar\r\nÀ luz de velas pra ela se apaixonar\r\nEu mando flores, chocolates e cartão\r\nO meu problema sempre foi ter grande coração\r\n\r\nEu ligo no outro dia no estilo Don Juan\r\nDormiu bem, meu amor?\r\nÉ domingo de manhã\r\nVamos pegar uma praia\r\nDeu saudade do seu beijo\r\nTrato todas iguais\r\nEsse é meu defeito\r\n\r\nTô namorando todo mundo\r\n99% anjo, perfeito\r\nMas aquele 1% é vagabundo\r\nAquele 1% é vagabundo\r\nSafado e elas gostam\r\n\r\nEu abro a porta e puxo a cadeira do jantar\r\nÀ luz de velas pra ela se apaixonar\r\nEu mando flores, chocolates e cartão\r\nO meu problema sempre foi ter grande coração\r\n\r\nEu ligo no outro dia no estilo Don Juan\r\nDormiu bem, meu amor?\r\nÉ domingo de manhã\r\nVamos pegar uma praia\r\nDeu saudade do seu beijo\r\nTrato todas iguais\r\nEsse é meu defeito\r\n\r\nTô namorando todo mundo\r\n99% anjo, perfeito\r\nMas aquele 1% é vagabundo\r\nAquele 1% é vagabundo\r\nSafado e elas gostam');
+(4, 3, 8, 4, 'Eu abro a porta e puxo a cadeira do jantar\r\nÀ luz de velas pra ela se apaixonar\r\nEu mando flores, chocolates e cartão\r\nO meu problema sempre foi ter grande coração\r\n\r\nEu ligo no outro dia no estilo Don Juan\r\nDormiu bem, meu amor?\r\nÉ domingo de manhã\r\nVamos pegar uma praia\r\nDeu saudade do seu beijo\r\nTrato todas iguais\r\nEsse é meu defeito\r\n\r\nTô namorando todo mundo\r\n99% anjo, perfeito\r\nMas aquele 1% é vagabundo\r\nAquele 1% é vagabundo\r\nSafado e elas gostam\r\n\r\nEu abro a porta e puxo a cadeira do jantar\r\nÀ luz de velas pra ela se apaixonar\r\nEu mando flores, chocolates e cartão\r\nO meu problema sempre foi ter grande coração\r\n\r\nEu ligo no outro dia no estilo Don Juan\r\nDormiu bem, meu amor?\r\nÉ domingo de manhã\r\nVamos pegar uma praia\r\nDeu saudade do seu beijo\r\nTrato todas iguais\r\nEsse é meu defeito\r\n\r\nTô namorando todo mundo\r\n99% anjo, perfeito\r\nMas aquele 1% é vagabundo\r\nAquele 1% é vagabundo\r\nSafado e elas gostam'),
+(98, 6, 1, 2, 'uhuu'),
+(103, 6, 2, 3, 'Will ama o mike'),
+(105, 6, 3, 2, 'eu amo a pam');
 
 -- --------------------------------------------------------
 
 --
--- Estrutura da tabela `categorias`
+-- Estrutura para tabela `categorias`
 --
 
 CREATE TABLE `categorias` (
@@ -57,7 +59,7 @@ CREATE TABLE `categorias` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Extraindo dados da tabela `categorias`
+-- Despejando dados para a tabela `categorias`
 --
 
 INSERT INTO `categorias` (`id`, `nome`) VALUES
@@ -73,7 +75,7 @@ INSERT INTO `categorias` (`id`, `nome`) VALUES
 -- --------------------------------------------------------
 
 --
--- Estrutura da tabela `series`
+-- Estrutura para tabela `series`
 --
 
 CREATE TABLE `series` (
@@ -86,7 +88,7 @@ CREATE TABLE `series` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Extraindo dados da tabela `series`
+-- Despejando dados para a tabela `series`
 --
 
 INSERT INTO `series` (`id`, `titulo`, `descricao`, `descricaoMenor`, `imagem`, `categoria_id`) VALUES
@@ -104,7 +106,7 @@ INSERT INTO `series` (`id`, `titulo`, `descricao`, `descricaoMenor`, `imagem`, `
 -- --------------------------------------------------------
 
 --
--- Estrutura da tabela `usuarios`
+-- Estrutura para tabela `usuarios`
 --
 
 CREATE TABLE `usuarios` (
@@ -115,7 +117,7 @@ CREATE TABLE `usuarios` (
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
--- Extraindo dados da tabela `usuarios`
+-- Despejando dados para a tabela `usuarios`
 --
 
 INSERT INTO `usuarios` (`id`, `username`, `senha`, `admin`) VALUES
@@ -123,50 +125,52 @@ INSERT INTO `usuarios` (`id`, `username`, `senha`, `admin`) VALUES
 (2, 'AyrtonKabare', '5678', 0),
 (3, 'WesleySafadão', '$2y$10$ltdIbQopI07nAkCN3DeKTOmRdKsMDvtVOLlq1BPRwNHsT5iTPGVsm', 0),
 (4, 'lu', '$2y$10$4gDLlt4szQlRLVyAuCezJO/wlwB1atBwkjSbeHr9s8bYhxkDSVd0u', 0),
-(5, 'adminIdeal', '$2y$10$qxzX.Wyx3bh/ZG/iIGxBFuS0kjzCQNSvx3j76JS/j7Y4vuHUyl5qq', 1);
+(5, 'adminIdeal', '$2y$10$qxzX.Wyx3bh/ZG/iIGxBFuS0kjzCQNSvx3j76JS/j7Y4vuHUyl5qq', 1),
+(6, 'maki safadinho', '$2y$10$9ugpsBx7tjZt.2lVOY6Sv.8iJdaguIjyljbHv3doyMRKi5Ebp8ufS', 0);
 
 --
 -- Índices para tabelas despejadas
 --
 
 --
--- Índices para tabela `avaliacoes`
+-- Índices de tabela `avaliacoes`
 --
 ALTER TABLE `avaliacoes`
   ADD PRIMARY KEY (`id`),
+  ADD UNIQUE KEY `unique_user_serie` (`usuario_id`,`serie_id`),
   ADD KEY `usuario_id` (`usuario_id`),
   ADD KEY `serie_id` (`serie_id`);
 
 --
--- Índices para tabela `categorias`
+-- Índices de tabela `categorias`
 --
 ALTER TABLE `categorias`
   ADD PRIMARY KEY (`id`),
   ADD UNIQUE KEY `nome` (`nome`);
 
 --
--- Índices para tabela `series`
+-- Índices de tabela `series`
 --
 ALTER TABLE `series`
   ADD PRIMARY KEY (`id`),
   ADD KEY `categoria_id` (`categoria_id`);
 
 --
--- Índices para tabela `usuarios`
+-- Índices de tabela `usuarios`
 --
 ALTER TABLE `usuarios`
   ADD PRIMARY KEY (`id`),
   ADD UNIQUE KEY `username` (`username`);
 
 --
--- AUTO_INCREMENT de tabelas despejadas
+-- AUTO_INCREMENT para tabelas despejadas
 --
 
 --
 -- AUTO_INCREMENT de tabela `avaliacoes`
 --
 ALTER TABLE `avaliacoes`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=108;
 
 --
 -- AUTO_INCREMENT de tabela `categorias`
@@ -184,21 +188,21 @@ ALTER TABLE `series`
 -- AUTO_INCREMENT de tabela `usuarios`
 --
 ALTER TABLE `usuarios`
-  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
--- Restrições para despejos de tabelas
+-- Restrições para tabelas despejadas
 --
 
 --
--- Limitadores para a tabela `avaliacoes`
+-- Restrições para tabelas `avaliacoes`
 --
 ALTER TABLE `avaliacoes`
   ADD CONSTRAINT `avaliacoes_ibfk_1` FOREIGN KEY (`usuario_id`) REFERENCES `usuarios` (`id`),
   ADD CONSTRAINT `avaliacoes_ibfk_2` FOREIGN KEY (`serie_id`) REFERENCES `series` (`id`);
 
 --
--- Limitadores para a tabela `series`
+-- Restrições para tabelas `series`
 --
 ALTER TABLE `series`
   ADD CONSTRAINT `series_ibfk_1` FOREIGN KEY (`categoria_id`) REFERENCES `categorias` (`id`);

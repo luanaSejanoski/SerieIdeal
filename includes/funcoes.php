@@ -28,7 +28,7 @@ function exibirInformacoes(array $series)
     }
 }
 
-function exibirDetalhes(array $serie, float $media)
+function exibirDetalhes(array $serie, $media)
 {
     echo '<div class="todasAsSeries">';
     echo '<div class="seriesDetalhadas" style=" background-image:  linear-gradient(to right, #131013f2 25%,
