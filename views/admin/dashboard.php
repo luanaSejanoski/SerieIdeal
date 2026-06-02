@@ -66,7 +66,7 @@
 
            <?php } ?>
          </select><br>
-         <input type="text" name="imagem" id="imagemCad" placeholder="URL da imagem" value="<?php echo htmlspecialchars($imagem ?? ''); ?>"><br>
+         <input type="text" name="imagem" id="imagemCad" placeholder="URL da imagem (modo paisagem)" value="<?php echo htmlspecialchars($imagem ?? ''); ?>"><br>
          <textarea name="descricao" id="descricaoCad" placeholder="Descrição"><?php echo htmlspecialchars($descricao ?? ''); ?></textarea><br>
          <textarea name="descricaoMenor" id="descricaoMenorCad" placeholder="Descrição menor"><?php echo htmlspecialchars($descricaoMenor ?? ''); ?></textarea><br>
          <button type="submit" style="background-color: rgb(100, 15, 48); color: white">Cadastrar</button><br>
