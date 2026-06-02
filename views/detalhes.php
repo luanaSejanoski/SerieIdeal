@@ -4,26 +4,13 @@ require_once '../views/navbar.php';
 require_once '../config/database.php';
 require_once "../includes/funcoes.php";
 require_once '../helpers/csrf.php';
+require_once '../models/avaliacao.php';
+require_once '../models/serie.php';
 
 $token = gerarTokenCSRF();
 
-
 $tituloRecebido = $_GET["id"] ?? "";
-$sql = 'SELECT s.*, c.nome AS genero
-        FROM series s
-        LEFT JOIN categorias c
-        ON s.categoria_id = c.id
-        WHERE s.id = :id';
-
-$stmt = $pdo->prepare($sql);
-
-$stmt->execute([
-    ':id' => $tituloRecebido
-]);
-
-$serieEncontrada = $stmt->fetch();
-
-
+$serieEncontrada = buscarSeriePorId($pdo, $tituloRecebido);
 
 ?>
 <!DOCTYPE html>

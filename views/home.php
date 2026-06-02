@@ -23,7 +23,6 @@ require_once '../includes/funcoes.php';
 <body>
 
   <?php
-  
     exibirInformacoes($catalogo);
    ?>
 </body>

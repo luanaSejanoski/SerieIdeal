@@ -1,4 +1,7 @@
 <?php
+
+require_once  __DIR__ . '/../models/avaliacao.php';
+
 function exibirInformacoes(array $series)
 {
     if (empty($series)) {
@@ -54,21 +57,7 @@ function exibirDetalhes(array $serie, $media, $token){
 
 function exibirComentarios(int $serieId, PDO $pdo)
 {
-    $sql = 'SELECT  u.username, a.comentario
-    FROM usuarios u
-    INNER JOIN avaliacoes a
-    ON u.id = a.usuario_id
-    WHERE serie_id = :id
-    AND comentario IS NOT NULL';
-
-    $stmt = $pdo->prepare($sql);
-    $stmt->execute(
-        [
-            ':id' => $serieId
-        ]
-    );
-
-    $comentarios = $stmt->fetchAll(PDO::FETCH_ASSOC);
+    $comentarios = selecionaComentarios($pdo, $serieId);
 
     if ($comentarios != null) {
         foreach ($comentarios as $comentario) {
@@ -80,62 +69,6 @@ function exibirComentarios(int $serieId, PDO $pdo)
 }
 
 
-function buscarPorGenero(int $genero, PDO $pdo): array
-{
-    $sql = 'SELECT s.*, c.nome AS genero
-    FROM series s
-    LEFT JOIN categorias c
-    ON s.categoria_id = c.id
-    WHERE s.categoria_id = :genero';
-
-    $stmt = $pdo->prepare($sql);
-    $stmt->execute(
-        [
-            ':genero' => $genero
-        ]
-    );
-
-    $resultados = $stmt->fetchAll(PDO::FETCH_ASSOC);
-    return $resultados;
-}
-
-
-function buscarPorNome(string $nome, PDO $pdo): array
-{
-    $sql = 'SELECT s.*, c.nome AS genero
-FROM series s
-LEFT JOIN categorias c
-ON s.categoria_id = c.id
-WHERE s.titulo LIKE :titulo';
-
-    $stmt = $pdo->prepare($sql);
-    $stmt->execute(
-        [
-            ':titulo' => "%$nome%"
-        ]
-    );
-
-    $resultados = $stmt->fetchAll(PDO::FETCH_ASSOC);
-    return $resultados;
-}
-
-function mediaNotas(int $serieId, PDO $pdo)
-{
-    $sql = 'SELECT AVG(nota) AS media
-    FROM avaliacoes
-    WHERE serie_id = :id
-    AND nota IS NOT NULL';
-
-    $stmt = $pdo->prepare($sql);
-    $stmt->execute(
-        [
-            ':id' => $serieId
-        ]
-    );
-
-    $resultados = $stmt->fetch(PDO::FETCH_ASSOC);
-    return $resultados['media'];
-}
 
 function exibirMensagem(){
         if (isset($_SESSION["sucesso"])) {

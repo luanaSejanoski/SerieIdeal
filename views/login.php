@@ -1,6 +1,7 @@
 <?php 
 session_start();
 
+
 require_once '../views/navbar.php';
 require_once '../helpers/csrf.php';
 

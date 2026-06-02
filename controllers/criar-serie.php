@@ -2,6 +2,7 @@
 session_start();
 require_once '../config/database.php';
 require_once '../helpers/csrf.php';
+require_once '../models/serie.php';
 
 validarTokenCSRF();
 
@@ -25,20 +26,7 @@ if ($_SERVER["REQUEST_METHOD"] === "POST") { //verifica se o usuário enviou o f
     if (empty($erros)) {
 
         try {
-            $sql = "INSERT INTO series
-            (titulo, descricao, descricaoMenor, imagem, categoria_id)
-            VALUES
-            (:titulo, :descricao, :descricaoMenor, :imagem, :categoria_id)";
-
-            $stmt = $pdo->prepare($sql);
-
-            $stmt->execute([
-                ':titulo' => $titulo,
-                ':descricao' => $descricao,
-                ':descricaoMenor' => $descricaoMenor,
-                ':imagem' => $imagem,
-                ':categoria_id' => $categoria_id,
-            ]);
+            cadastraSerie($pdo, $titulo, $descricao, $descricaoMenor, $imagem, $categoria_id);
 
             $_SESSION["sucesso"] = "Série cadastrada com sucesso!";
 

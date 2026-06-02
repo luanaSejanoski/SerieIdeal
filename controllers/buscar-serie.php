@@ -1,7 +1,7 @@
 <?php
 session_start();
 require_once '../config/database.php';
-require_once '../includes/funcoes.php';
+require_once '../models/serie.php';
 
 $nome = trim($_GET["nome"] ?? "");
 $genero = $_GET["genero"] ?? "";

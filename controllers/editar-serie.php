@@ -3,6 +3,7 @@ session_start();
 
 require_once '../config/database.php';
 require_once '../helpers/csrf.php';
+require_once '../models/serie.php';
 
 validarTokenCSRF();
 
@@ -25,24 +26,7 @@ if (empty($id)) {
     if (empty($erros)) {
 
         try {
-            $sql = "UPDATE series SET
-            titulo = :titulo,
-            descricao = :descricao,
-            descricaoMenor = :descricaoMenor,
-            imagem = :imagem,
-            categoria_id = :categoria_id
-            WHERE id = :id";
-
-            $stmt = $pdo->prepare($sql);
-
-            $stmt->execute([
-                ':titulo' => $titulo,
-                ':descricao' => $descricao,
-                ':descricaoMenor' => $descricaoMenor,
-                ':imagem' => $imagem,
-                ':categoria_id' => $categoria_id,
-                ':id' => $id
-            ]);
+            editarSerie($pdo, $titulo, $descricao, $descricaoMenor, $imagem, $categoria_id, $id );
 
             $_SESSION["sucesso"] = "Série editada com sucesso!";
 

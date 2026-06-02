@@ -4,6 +4,9 @@
   require_once '../../config/database.php';
   require_once '../../includes/funcoes.php';
   require_once '../../helpers/csrf.php';
+  require_once '../../models/categoria.php';
+  require_once '../../models/serie.php';
+
 
   $token = gerarTokenCSRF();
 
@@ -15,43 +18,18 @@
 
   //sql pra pegar todos os dados da série de acordo com o id 
   $tituloId = $_GET["titulo_id"] ?? "";
-  $sql = 'SELECT s.*, c.nome AS genero
-FROM series s
-LEFT JOIN categorias c
-ON s.categoria_id = c.id
-WHERE s.id = :id';
-
-  $stmt = $pdo->prepare($sql);
-
-  $stmt->execute(
-    [
-      ':id' => $tituloId
-    ]
-  );
-
-  $series = $stmt->fetchAll(PDO::FETCH_ASSOC);
+  $series = buscarSeriePorId($pdo, $tituloId);
 
   //sql pra pegar o titulo e o id das series para fazer as opçoes do select
-  $sqlSelect =  $sql = 'SELECT titulo, id FROM series';
-  $stmtSelect = $pdo->query($sqlSelect);
-  $seriesSelect = $stmtSelect->fetchAll(PDO::FETCH_ASSOC);
+  $seriesSelect = buscarTitulosSeries($pdo);
 
   //sql pra pegar todos os dados da serie selecionada
   $serieSelecionada = null;
   if (isset($_GET['serieEditar'])) {
-    $sql = 'SELECT * FROM series WHERE id = :id';
-    $stmt = $pdo->prepare($sql);
-    $stmt->execute([
-      ':id' => $_GET['serieEditar']
-    ]);
-
-    $serieSelecionada = $stmt->fetch(PDO::FETCH_ASSOC);
+    $serieSelecionada = buscarSerieParaEditar($pdo, $_GET['serieEditar']);
   }
 
-  //sql pra pegar todos os dados das categorias
-  $sqlCategorias = 'SELECT * FROM categorias';
-  $stmtCategorias = $pdo->query($sqlCategorias);
-  $categorias = $stmtCategorias->fetchAll(PDO::FETCH_ASSOC);
+  $categorias = selecionaCategorias($pdo);
 
   ?>
 
@@ -142,9 +120,9 @@ WHERE s.id = :id';
          <button type="submit" style="background-color: rgb(100, 15, 48); color: white">Editar</button><br>
        </form>
      </div>
-    </main>
-    <div class="mensagens">
-     <?php exibirMensagem()?>
+   </main>
+   <div class="mensagens">
+     <?php exibirMensagem() ?>
    </div>
  </body>
 

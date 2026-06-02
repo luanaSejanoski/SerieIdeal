@@ -1,11 +1,8 @@
 <?php
 require_once '../config/database.php';
+require_once '../models/categoria.php';
 
-$sql = "SELECT * FROM categorias";
-
-$stmt = $pdo->query($sql);
-
-$categorias = $stmt->fetchAll(PDO::FETCH_ASSOC);
+$categorias = selecionaCategorias($pdo);
 ?>
 
 <header>

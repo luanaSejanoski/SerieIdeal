@@ -3,6 +3,7 @@
 
     require_once '../config/database.php';
     require_once '../helpers/csrf.php';
+    require_once '../models/usuario.php';
 
     validarTokenCSRF();
 
@@ -10,20 +11,9 @@
     if ($_SERVER['REQUEST_METHOD'] === 'POST') {
 
         $usuario = $_POST['user'] ?? "";
-
         $senha = $_POST['senha'] ?? "";
 
-        $sql = 'SELECT id, username, senha, admin FROM usuarios
-        WHERE username = :usuario';
-
-        $stmt = $pdo->prepare($sql);
-        $stmt->execute(
-            [
-                ':usuario' => $usuario,
-            ]
-        );
-
-        $usuarioExiste = $stmt->fetch();
+        $usuarioExiste = login($pdo, $usuario);
 
         if ($usuarioExiste && password_verify($senha, $usuarioExiste['senha'])) {
 
