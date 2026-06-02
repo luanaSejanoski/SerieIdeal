@@ -114,7 +114,7 @@
              <option value="<?php echo $categoria['id']; ?>"> <?php echo htmlspecialchars($categoria['nome']); ?></option>
            <?php } ?>
          </select><br>
-         <input type="text" name="imagem" id="imagemEd" placeholder="URL da imagem" value="<?php echo htmlspecialchars($serieSelecionada['imagem'] ?? ''); ?>"><br>
+         <input type="text" name="imagem" id="imagemEd" placeholder="URL da imagem (modo paisagem)" value="<?php echo htmlspecialchars($serieSelecionada['imagem'] ?? ''); ?>"><br>
          <textarea name="descricao" id="descricaoEd" placeholder="Descrição"><?php echo htmlspecialchars($serieSelecionada['descricao'] ?? ''); ?></textarea><br>
          <textarea name="descricaoMenor" id="descricaoMenorEd" placeholder="Descrição menor"><?php echo htmlspecialchars($serieSelecionada['descricaoMenor'] ?? ''); ?></textarea><br>
          <button type="submit" style="background-color: rgb(100, 15, 48); color: white">Editar</button><br>
