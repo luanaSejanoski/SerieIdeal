@@ -10,7 +10,7 @@
 
   $token = gerarTokenCSRF();
 
-  //verifica se o usuario tem é um administrador
+  //verifica se o usuario é um administrador
   if (!isset($_SESSION['id']) || !isset($_SESSION['admin']) || $_SESSION['admin'] != 1) {
     header('Location: ../login.php');
     exit;
