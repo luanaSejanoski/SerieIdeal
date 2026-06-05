@@ -55,8 +55,8 @@ O projeto possui:
 
 ## 👥 Equipe
 
-- Leticia Sejanoski
-- Luana Sejanoski
+- Leticia Sejanoski Schisler
+- Luana Sejanoski Schisler
 - Maria Isabella de França
 
 ---
