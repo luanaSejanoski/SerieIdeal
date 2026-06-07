@@ -30,8 +30,9 @@ function exibirInformacoes(array $series)
     }
 }
 
-
 function exibirDetalhes(array $serie, $media, $token){
+
+    $indisponivel = !isset($_SESSION["Logado"]) ? 'disabled' : '';
 
     echo '<div class="todasAsSeries">';
     echo '<div class="seriesDetalhadas" style=" background-image:  linear-gradient(to right, #131013f2 25%,
@@ -43,11 +44,14 @@ function exibirDetalhes(array $serie, $media, $token){
     echo '<form class="avaliar" action="../controllers/avaliacoes.php" method="POST">';
     echo '<input type="hidden" name="tokenCsrf" value="' . $token . '">';
     echo '<input type="hidden" name="serie_id" value="' . $serie['id'] . '">';
-    echo '<button name="nota" value="1">⭐</button>';
-    echo '<button name="nota" value="2">⭐⭐</button>';
-    echo '<button name="nota" value="3">⭐⭐⭐</button>';
-    echo '<button name="nota" value="4">⭐⭐⭐⭐</button>';
-    echo '<button name="nota" value="5">⭐⭐⭐⭐⭐</button>';
+
+    echo '<button ' . $indisponivel . ' name="nota" value="1">⭐</button>';
+    echo '<button ' . $indisponivel . ' name="nota" value="2">⭐⭐</button>';
+    echo '<button ' . $indisponivel . ' name="nota" value="3">⭐⭐⭐</button>';
+    echo '<button ' . $indisponivel . ' name="nota" value="4">⭐⭐⭐⭐</button>';
+    echo '<button ' . $indisponivel . ' name="nota" value="5">⭐⭐⭐⭐⭐</button>';
+
+    echo '</form>';
 
     echo '</form>';
     echo '</div>';

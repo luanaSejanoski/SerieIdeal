@@ -43,14 +43,23 @@ $serieEncontrada = buscarSeriePorId($pdo, $tituloRecebido);
                 ?>
 
             </div>
+            
+            <?php if (isset($_SESSION["Logado"])) { ?>
+
             <form class="formComentario" action="../controllers/avaliacoes.php" method="POST">
-                <input type="hidden" name="tokenCsrf" value="<?php echo $token; ?>">
-                <input type="hidden" name="serie_id" value="<?php echo $serieEncontrada['id']; ?>">
+                <input type="hidden" name="tokenCsrf" value="<?= $token ?>">
+                <input type="hidden" name="serie_id" value="<?= $serieEncontrada['id'] ?>">
                 <input type="text" name="comentario" id="icomentario">
-
                 <button type="submit">Publicar</button>
-
             </form>
+
+            <?php } else { ?>
+
+            <div class="formComentario">
+                <input type="text" disabled placeholder="Faça login para comentar">
+                <button disabled>Publicar</button>
+            </div>
+            <?php } ?>
         </div>
     </main>
 </body>
